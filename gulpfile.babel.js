@@ -3,6 +3,7 @@
 import plugins       from 'gulp-load-plugins';
 import yargs         from 'yargs';
 import browser       from 'browser-sync';
+// import nodemon       from 'gulp-nodemon';
 import gulp          from 'gulp';
 import panini        from 'panini';
 import rimraf        from 'rimraf';
@@ -132,6 +133,17 @@ function images() {
     })))
     .pipe(gulp.dest(PATHS.dist + '/assets/img'));
 }
+
+
+// function nodemon() {
+//   nodemon({
+//     script: 'server.js', 
+//     ext: 'js html',
+//     env: { 'NODE_ENV': 'development' }
+//   })
+// }
+
+
 
 // Start a server with BrowserSync to preview the site in
 function server(done) {
