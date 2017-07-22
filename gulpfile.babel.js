@@ -13,6 +13,8 @@ import fs            from 'fs';
 import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
 import named         from 'vinyl-named';
+import ext           from 'gulp-ext-replace';
+
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -30,7 +32,12 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(pages, sass, javascript, images, copy), nothing));
+ gulp.series(
+    clean, 
+    gulp.parallel(pages, sass, javascript, images, copy), 
+    blocks
+    // rename
+  ));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -42,9 +49,13 @@ function clean(done) {
   rimraf(PATHS.dist, done);
 }
 
-function nothing(done){
-  // console.log('');
-  done();
+// Copy files out of the assets folder
+// This task skips over the "img", "js", and "scss" folders, which are parsed separately
+function blocks(cb) {
+  return gulp.src('src/partials/building-blocks/*')
+    .pipe(ext('.handlebars'))
+    .pipe(gulp.dest('views/partials'));
+    cb();
 }
 
 // Copy files out of the assets folder
@@ -70,6 +81,20 @@ function pages() {
 // Load updated HTML templates and partials into Panini
 function resetPages(done) {
   panini.refresh();
+  done();
+}
+
+// Rename the extensions of all html files
+function rename(done) {
+  gulp.src('src/layouts/*.hbs')
+      .pipe(ext('.handlebars'))
+      .pipe(gulp.dest('src/layouts'))
+  gulp.src('src/partials/*/*.html')
+      .pipe(ext('.handlebars'))
+      .pipe(gulp.dest('src/partials'))
+  gulp.src('src/pages/*.html')
+      .pipe(ext('.handlebars'))
+      .pipe(gulp.dest('src/pages'))
   done();
 }
 
@@ -167,5 +192,6 @@ function watch() {
   gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript, browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
-  // gulp.watch('src/styleguide/**').on('all', gulp.series(styleGuide, browser.reload));
+  // 
+  gulp.watch('src/partials/building-blocks/**').on('all', gulp.series(blocks, browser.reload));
 }
