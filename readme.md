@@ -1,9 +1,16 @@
 # ZURB Express Template
 This is an unofficial ZURB Template for use with [Express](http://expressjs.com/en/4x/api.html) and [Building BLocks](foundation.zurb.com/building-blocks/). It is intended to be incorporated into [Zurb Foundation's CLI](https://github.com/zurb/foundation-cli) as an alternitive to static site prototypes.
 
+## Why make this? 
+Because I wanted a super lightweight MODERN server that is easy to learn, teach and use for projects.
+
+## Goals
+- LIGHT weight node server
+- Amazingly fast front-end prototyping using building blocks to build production ready sites in hours not days and progressively build the backend as needed.
+- Optional backend for basic blogs, ecommerce, photo gallery, 
 
 ## Features
-- [Build Blocks Compatable !](http://foundation.zurb.com/building-blocks/)
+- [Building Blocks Compatable !](http://foundation.zurb.com/building-blocks/)
 - [Templates !](http://foundation.zurb.com/templates.html)
 - Handlebars HTML templates with Express
 - Sass compilation and prefixing
@@ -15,6 +22,17 @@ This is an unofficial ZURB Template for use with [Express](http://expressjs.com/
   - JavaScript compression
   - Image compression
 - Optional database (javascript object prototypes by default)
+
+## Future Goals
+- [Heroku deployment !](https://www.heroku.com/)
+- Email server using [Foundation for Email](http://foundation.zurb.com/emails.html) and [inky templates](https://github.com/zurb/inky)
+- firebase components for plug and chug back-end
+- authentication
+- sql / mongodb schemas and ORM's for common backend usages like blogs, ecommerce
+- (Possibilities further down...) 
+  - Optional CMS integration with [keystone.js](keystone.js)
+  - React version where [gulp-html2jsx](https://github.com/hemanth/gulp-html2jsx) automatically converts building blocks into react-components
+  - Web Componets with virtual dom (this would require substancial help and wont likely happen).
 
 ## Installation
 
