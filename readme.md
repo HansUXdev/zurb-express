@@ -7,7 +7,7 @@ Because I wanted a super lightweight MODERN server that is easy to learn, teach 
 ## Goals
 - LIGHT weight node server
 - Amazingly fast front-end prototyping using building blocks to build production ready sites in hours not days and progressively build the backend as needed.
-
+- Optional backend for basic blogs, ecommerce, photo gallery, 
 
 ## Features
 - [Building Blocks Compatable !](http://foundation.zurb.com/building-blocks/)
@@ -25,6 +25,7 @@ Because I wanted a super lightweight MODERN server that is easy to learn, teach 
 
 ## Future Goals
 - [Heroku deployment !](https://www.heroku.com/)
+- Email server using [Foundation for Email](http://foundation.zurb.com/emails.html) and [inky templates](https://github.com/zurb/inky)
 - firebase components for plug and chug back-end
 - authentication
 - sql / mongodb schemas and ORM's for common backend usages like blogs, ecommerce
