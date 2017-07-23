@@ -50,7 +50,7 @@ foundation-cli/lib/util/questions.js should look like this:
       name: 'ZURB Template: includes Handlebars templates and Sass/JS compilers',
       value: 'zurb'
     },{
-      name: 'Express Template: a basic express server compatable with building blocks',
+      name: 'Express Template: a basic express server compatible with building blocks',
       value: 'express'
     }]
 ```
