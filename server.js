@@ -3,12 +3,12 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var exphbs = require("express-handlebars");
 
-var port = 3000;
+var port = 8000;
 
 var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
-// app.use(express.static(process.cwd() + "/public"));
+app.use('/public', express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -19,35 +19,34 @@ app.use(methodOverride("_method"));
 // Set Handlebars.
 app.engine("handlebars", exphbs(
 	// Options for handlebars
-	{ defaultLayout: "main" }
+	// Main is the default layout
+	{ defaultLayout: "offcanvas" }
 ));
 app.set("view engine", "handlebars");
 
+// Register menu.js globally
+	var menu = require("./data/menu.js");
+	app.locals.menu = menu;
+	// console.log(app.locals.menu);
 
-
-// Import routes and give the server access to them.
-	// var routes = require("./controllers/catsController.js");
-	// app.use("/", routes);
-
+// Import some basic example data
 	// Basic Home page
-	app.get("/", function(req, res) {
-	  res.render("index");
+	app.get("/",function(req, res) {
+	  res.render("index",{layout: 'main',});
 	});
 
 	// Example of using an alternitive layout
-	app.get("/test", function(req, res) {
-	  res.render('pages/test', {layout: false});
+	app.get("/layout", function(req, res) {
+	  res.render('pages/layout', 
+	  	{layout: 'main',}
+	  );
 	});
 
-	// Example of data being used with handlebars
-	/*
-	app.get("/dog", function(req, res) {
-	  // Handlebars requires an object to be sent to the dog handlebars file.
-	  // Lucky for us, animals[0] is an object!
-
-	  // 1. send the dog object from the animals array to the dog handlebars file.
-	  res.render("dog", animals[0]);
+	// create routes for each tempalate
+	menu.templates.forEach(function(element) {
+		app.get(element.url,function(req, res) {
+		  res.render("pages/"+element.url);
+		});
 	});
-	*/
 
 app.listen(port);

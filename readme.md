@@ -1,5 +1,20 @@
 # ZURB Express Template
 
+## Features
+- [Build Blocks Compatable](http://foundation.zurb.com/building-blocks/)
+- [Templates](http://foundation.zurb.com/templates.html)
+- Handlebars HTML templates with Express
+- Sass compilation and prefixing
+- JavaScript module bundling with webpack
+- Built-in BrowserSync server 
+  - run nodemon ./server.js localhost 8080
+- For production builds:
+  - CSS compression
+  - JavaScript compression
+  - Image compression
+
+
+
 [![devDependency Status](https://david-dm.org/zurb/foundation-zurb-template/dev-status.svg)](https://david-dm.org/zurb/foundation-zurb-template#info=devDependencies)
 
 **Please open all issues with this template on the main [Foundation for Sites](https://github.com/zurb/foundation-sites/issues) repo.**

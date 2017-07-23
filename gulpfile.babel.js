@@ -34,14 +34,22 @@ function loadConfig() {
 gulp.task('build',
  gulp.series(
     clean, 
-    gulp.parallel(pages, sass, javascript, images, copy), 
+    gulp.parallel(
+      // pages, 
+      sass, 
+      javascript, 
+      images, 
+      copy), 
     blocks
     // rename
   ));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('build', server, watch));
+  gulp.series('build', 
+    // server, 
+    watch)
+);
 
 // Delete the "dist" folder
 // This happens every time a build starts
