@@ -1,34 +1,20 @@
 # ZURB Express Template
+This is an unofficial ZURB Template for use with [Express](http://expressjs.com/en/4x/api.html) and [Building BLocks](foundation.zurb.com/building-blocks/). It is intended to be incorporated into [Zurb Foundation's CLI](https://github.com/zurb/foundation-cli) as an alternitive to static site prototypes.
+
 
 ## Features
-- [Build Blocks Compatable](http://foundation.zurb.com/building-blocks/)
-- [Templates](http://foundation.zurb.com/templates.html)
+- [Build Blocks Compatable !](http://foundation.zurb.com/building-blocks/)
+- [Templates !](http://foundation.zurb.com/templates.html)
 - Handlebars HTML templates with Express
 - Sass compilation and prefixing
 - JavaScript module bundling with webpack
-- Built-in BrowserSync server 
+- Built-in BrowserSync/Nodemon server 
   - run nodemon ./server.js localhost 8080
 - For production builds:
   - CSS compression
   - JavaScript compression
   - Image compression
-
-
-
-[![devDependency Status](https://david-dm.org/zurb/foundation-zurb-template/dev-status.svg)](https://david-dm.org/zurb/foundation-zurb-template#info=devDependencies)
-
-**Please open all issues with this template on the main [Foundation for Sites](https://github.com/zurb/foundation-sites/issues) repo.**
-
-This is an unofficial ZURB Template for use with [Express](http://expressjs.com/en/4x/api.html) and [Building BLocks](foundation.zurb.com/building-blocks/). It has a Gulp-powered build system with these features:
-
-- Handlebars HTML templates with Express
-- Sass compilation and prefixing
-- JavaScript module bundling with webpack
-- Built-in BrowserSync server
-- For production builds:
-  - CSS compression
-  - JavaScript compression
-  - Image compression
+- Optional database (javascript object prototypes by default)
 
 ## Installation
 
@@ -36,12 +22,56 @@ To use this template, your computer needs:
 
 - [NodeJS](https://nodejs.org/en/) (0.12 or greater)
 - [Git](https://git-scm.com/)
+- [Zurb Foundation's CLI](https://github.com/zurb/foundation-cli)
 
-This template can be installed with the Foundation CLI, or downloaded and set up manually.
+
+## USE
+### Using through git
+```bash
+git clone https://github.com/HansUXdev/zurb-express
+```
 
 ### Using the CLI
+This template can be MANUALLY installed on the Foundation CLI.
 
-Install the Foundation CLI with this command:
+To install it manually on the Foundation CLI you will need change the following files:
+
+foundation-cli/lib/util/questions.js should look like this:
+
+```javascript
+	//...
+    name: 'template',
+    message: 'Which template would you like to use?',
+    default: 'basic',
+    choices: [{
+      name: 'Basic Template: includes a Sass compiler',
+      value: 'basic'
+    }, {
+      name: 'ZURB Template: includes Handlebars templates and Sass/JS compilers',
+      value: 'zurb'
+    },{
+      name: 'Express Template: a basic express server compatable with building blocks',
+      value: 'express'
+    }]
+```
+foundation-cli/lib/commands/new.js should look like this:
+
+```javascript
+	//...
+    name: 'template',
+    message: 'Which template would you like to use?',
+    default: 'basic',
+    choices: [{
+      name: 'Basic Template: includes a Sass compiler',
+      value: 'basic'
+    }, {
+      name: 'ZURB Template: includes Handlebars templates and Sass/JS compilers',
+      value: 'zurb'
+    },{
+      name: 'Express Template: a basic express server compatable with building blocks',
+      value: 'express'
+    }]
+```
 
 ```bash
 npm install foundation-cli --global
@@ -60,3 +90,5 @@ Now `cd` to your project name and to start your project run
 ```bash
 foundation watch
 ```
+
+**Please if you like it star this repo and tell Zurb to add it to the CLI [Zurb Foundation's CLI](https://github.com/zurb/foundation-cli/issues).**
