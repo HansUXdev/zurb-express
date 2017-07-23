@@ -58,19 +58,15 @@ foundation-cli/lib/commands/new.js should look like this:
 
 ```javascript
 	//...
-    name: 'template',
-    message: 'Which template would you like to use?',
-    default: 'basic',
-    choices: [{
-      name: 'Basic Template: includes a Sass compiler',
-      value: 'basic'
-    }, {
-      name: 'ZURB Template: includes Handlebars templates and Sass/JS compilers',
-      value: 'zurb'
-    },{
-      name: 'Express Template: a basic express server compatable with building blocks',
-      value: 'express'
-    }]
+var repositories = {
+  sites: {
+    basic: 'https://github.com/zurb/foundation-sites-template.git',
+    zurb: 'https://github.com/zurb/foundation-zurb-template.git',
+    express: 'https://github.com/HansUXdev/zurb-express'
+  },
+  apps: 'https://github.com/zurb/foundation-apps-template.git',
+  emails: 'https://github.com/zurb/foundation-emails-template.git'
+}
 ```
 
 ```bash
