@@ -5,10 +5,8 @@ import yargs         from 'yargs';
 import browser       from 'browser-sync';
 // import nodemon       from 'gulp-nodemon';
 import gulp          from 'gulp';
-import panini        from 'panini';
-import rimraf        from 'rimraf';
-import sherpa        from 'style-sherpa';
 import yaml          from 'js-yaml';
+import rimraf        from 'rimraf';
 import fs            from 'fs';
 import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
@@ -35,12 +33,12 @@ gulp.task('build',
  gulp.series(
     clean, 
     gulp.parallel(
-      // pages, 
       sass, 
       javascript, 
       images, 
-      copy), 
-    blocks
+      copy
+      ), 
+      blocks
     // rename
   ));
 
@@ -73,18 +71,6 @@ function copy() {
     .pipe(gulp.dest(PATHS.dist + '/assets'));
 }
 
-// Copy page templates into finished HTML files
-function pages() {
-  return gulp.src('src/pages/**/*.{html,hbs,handlebars}')
-    .pipe(panini({
-      root: 'src/pages/',
-      layouts: 'src/layouts/',
-      partials: 'src/partials/',
-      data: 'src/data/',
-      helpers: 'src/helpers/'
-    }))
-    .pipe(gulp.dest(PATHS.dist));
-}
 
 // Load updated HTML templates and partials into Panini
 function resetPages(done) {
@@ -195,11 +181,9 @@ function reload(done) {
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.assets, copy);
-  gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, browser.reload));
-  gulp.watch('src/{layouts,partials}/**/*.html').on('all', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript, browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
-  // 
+  // watch for when new building blocks are installed and move them over to the server
   gulp.watch('src/partials/building-blocks/**').on('all', gulp.series(blocks, browser.reload));
 }
