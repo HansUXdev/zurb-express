@@ -35,17 +35,20 @@ app.engine("handlebars", exphbs(
 app.set("view engine", "handlebars");
 
 
-// Require your backend components if you need them
-		require("./routes/components/to-do.js")(app);
-
+// var routes = require("./controllers/burgers_controller");
+// app.use("/", routes);
+// app.use("/update", routes);
 
 // Import some basic example data
 	// Basic Home page
 		require("./routes/home.js")(app);
+		require("./routes/admin.js")(app);
 		
 
 		app.get("/",function(req, res) {
-		  res.render("components",{layout: 'main',});
+		  res.render("components",
+		  	{layout: 'main'}
+		  );
 		});
 
 	// // Example of using an alternitive layout

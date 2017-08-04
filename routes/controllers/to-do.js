@@ -18,6 +18,13 @@ module.exports = function(app) {
     db.Todo.findAll({}).then(function(dbTodo) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbTodo);
+      // expose the data into the main index, 
+      // updating the page with hbs
+      // var hbsObject = {
+      //   message: dbMessage
+      // };
+      // return res.render("index", hbsObject);
+
     });
   });
 
