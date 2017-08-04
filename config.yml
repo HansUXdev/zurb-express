@@ -1,5 +1,5 @@
 # Your project's server will run on localhost:xxxx at this port
-PORT: 8000
+PORT: 3000
 
 # Autoprefixer will make sure your CSS works with these browsers
 COMPATIBILITY:
@@ -29,4 +29,6 @@ PATHS:
     - "node_modules/motion-ui/src"
   # Paths to JavaScript entry points for webpack to bundle modules
   entries:
+    - "src/assets/js/building-blocks/contact-panel.js"
+    - "src/assets/js/building-blocks/app-dashboard-layout.js"
     - "src/assets/js/app.js"

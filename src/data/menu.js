@@ -6,14 +6,26 @@
 // ===============================================================================
 
 var menu = {
-  topbar: [
+  layouts: [
     {
-      url: "/",
-      name: "home"
+      url: "/admin",
+      layout: 'dashboard',
+      data: '/',
+      page:'admin/admin',
+      name: "Dashboard"
     },
     {
-      url: "/layout",
+      url: "/offcanvas",
+      layout: 'offcanvas',
+      data: '/',
+      page:'pages/ecommerce',
       name: "Offcanvas"
+    }
+  ],  
+  topbar: [
+    {
+      url: "/home",
+      name: "home"
     }
   ],
   templates: [

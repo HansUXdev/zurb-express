@@ -1,56 +1,111 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1>Welcome to Foundation for Sites</h1>
+    <h1>Welcome to Foundation for Express!</h1>
   </div>
 </div> 
-
-
-<div class="row">
-  <h1>Check out some of the pre-built data driven components.</h1>
-  <div class="large-6 columns">
-  {{>todo-list-data}}
-  </div>
-  <div class="large-6 columns">
-        <ul class="list-group todo-list">
-          <li class="list-group-item new-item">
-            <form id="todo-form">
-            <input class="new-item" placeholder="Add a todo" type="text" />
-            <button type="submit" class="btn btn-default">Add Todo</button>
-            </form>
-          </li>
-          <span class="todo-container">
-          </span>
-        </ul>
-  </div>
-</div> 
-
-
-
 
 <div class="row">
   <div class="large-12 columns">
     <div class="callout">
-      <h3>We&rsquo;re stoked you want to try Foundation! </h3>
-      <p>To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
-      <p>Once you've exhausted the fun in this document, you should check out:</p>
+      <h3>
+        {{!-- We&rsquo;re stoked you want to try Foundation!  --}}
+        Check out some of the pre-built data driven components.
+      </h3>
+      <p>
+        To use these components check out the <code>./routes/component/</code> folder to edit the backend logic behind them. 
+        <br>
+        To edit the front-end side of these components, check out <code>./assets/{js,scss}/{building-blocks,components}/*{js,scss}</code>.
+      </p>
+      <p>
+        Once you've exhausted the fun in this document, you should check out: <a href="http://foundation.zurb.com/building-blocks/">Building Blocks</a> to see if there are any new components you want to include.
+      </p>
+      
       <div class="row">
         <div class="large-4 medium-4 columns">
-          <p><a href="http://foundation.zurb.com/docs">Foundation Documentation</a><br />Everything you need to know about using the framework.</p>
+          <div class="callout">
+            <h5>Todo Component!</h5>
+            {{!-- <p>
+              You can
+              <code>sr</code>
+            </p> --}}
+            <div class="row">
+              <div class="large-12 columns">
+              {{>components/todo-list-data}}
+              </div>
+            </div> 
+
+          </div>
         </div>
+
         <div class="large-4 medium-4 columns">
-          <p><a href="http://zurb.com/university/code-skills">Foundation Code Skills</a><br />These online courses offer you a chance to better understand how Foundation works and how you can master it to create awesome projects.</p>
+          <div class="callout">
+
+            <div data-closable="fade-out" class="todo-list-card card">
+              <div class="card-divider">
+                <a href="http://foundation.zurb.com/building-blocks/blocks/ecommerce-product-details.html">
+                  <h3>Product-details</h3>
+                </a>
+                <button class="close-button" data-close>x</button>
+              </div>
+              <div class="card-section">
+                {{>lorem-ipsum}}
+              </div>
+            </div>
+
+          </div>
         </div>
+
         <div class="large-4 medium-4 columns">
-          <p><a href="http://foundation.zurb.com/forum">Foundation Forum</a><br />Join the Foundation community to ask a question or show off your knowlege.</p>
+          <div class="callout">
+            <div data-closable="fade-out" class="todo-list-card card">
+              <div class="card-divider">
+                <a href="http://foundation.zurb.com/building-blocks/blocks/checkout-summary.html">
+                  <h3>Checkout-Summary</h3>
+                </a>
+                <button class="close-button" data-close>x</button>
+              </div>
+              <div class="card-section">
+                {{>lorem-ipsum}}
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
+
       <div class="row">
         <div class="large-4 medium-4 medium-push-2 columns">
-          <p><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</p>
+          <div class="callout">
+            <div data-closable="fade-out" class="todo-list-card card">
+              <div class="card-divider">
+                <a href="http://foundation.zurb.com/building-blocks/blocks/checkout-summary.html">
+                  <h3>Checkout-Summary</h3>
+                </a>
+                <button class="close-button" data-close>x</button>
+              </div>
+              <div class="card-section">
+                {{>lorem-ipsum}}
+              </div>
+            </div>
+          </div>
         </div>
+
         <div class="large-4 medium-4 medium-pull-2 columns">
-          <p><a href="https://twitter.com/ZURBfoundation">@zurbfoundation</a><br />Ping us on Twitter if you have questions. When you build something with this we'd love to see it (and send you a totally boss sticker).</p>
-        </div>        
+          <div class="callout">
+            <div data-closable="fade-out" class="todo-list-card card">
+              <div class="card-divider">
+                <a href="http://foundation.zurb.com/building-blocks/blocks/checkout-summary.html">
+                  <h3>Checkout-Summary</h3>
+                </a>
+                <button class="close-button" data-close>x</button>
+              </div>
+              <div class="card-section">
+                {{>lorem-ipsum}}
+              </div>
+            </div>
+          </div>
+        </div>  
+
       </div>
     </div>
   </div>

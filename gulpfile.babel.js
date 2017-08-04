@@ -19,6 +19,9 @@ const $ = plugins();
 
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
+// var argv         = require('yargs').argv;
+// var isProduction = !!(argv.production);
+
 
 // Load settings from settings.yml
 const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS } = loadConfig();
@@ -39,7 +42,6 @@ gulp.task('build',
       copy
       ), 
       blocks
-    // rename
   ));
 
 // Build the site, run the server, and watch for file changes
@@ -55,8 +57,7 @@ function clean(done) {
   rimraf(PATHS.dist, done);
 }
 
-// Copy files out of the assets folder
-// This task skips over the "img", "js", and "scss" folders, which are parsed separately
+// Copy files out of the src/partials/building-blocks folder
 function blocks(cb) {
   return gulp.src('src/partials/building-blocks/*')
     .pipe(ext('.handlebars'))
@@ -78,19 +79,7 @@ function resetPages(done) {
   done();
 }
 
-// Rename the extensions of all html files
-function rename(done) {
-  gulp.src('src/layouts/*.hbs')
-      .pipe(ext('.handlebars'))
-      .pipe(gulp.dest('src/layouts'))
-  gulp.src('src/partials/*/*.html')
-      .pipe(ext('.handlebars'))
-      .pipe(gulp.dest('src/partials'))
-  gulp.src('src/pages/*.html')
-      .pipe(ext('.handlebars'))
-      .pipe(gulp.dest('src/pages'))
-  done();
-}
+
 
 // Generate a style guide from the Markdown content and HTML template in styleguide/
 // function styleGuide(done) {
@@ -109,6 +98,19 @@ function sass() {
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
+    // .pipe(
+    //   $.pleeease({
+    //     sass: true,
+    //     autoprefixer: COMPATIBILITY,
+    //     // includePaths: PATHS.sass,
+    //     sourcemaps: PATHS.sourcemaps,
+    //     mqpacker: true,
+    //     // rem: false,
+    //     pseudoElements: false,  // Converts ::before to :before
+    //     opacity: true,          // Filter for IE 8
+    //     minifier: isProduction ? true : false, 
+    //   })
+    // )
     // Comment in the pipe below to run UnCSS in production
     //.pipe($.if(PRODUCTION, $.uncss(UNCSS_OPTIONS)))
     .pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))

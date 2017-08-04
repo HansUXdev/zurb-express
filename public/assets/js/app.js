@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -9900,7 +9900,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ }),
 /* 1 */
@@ -11280,6 +11280,139 @@ exports.Nest = Nest;
 "use strict";
 
 
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+window.$ = _jquery2.default;
+
+// module.exports = function(  ){
+
+// closes the panel on click outside
+// Require jquery...
+(0, _jquery2.default)(document).mouseup(function (e) {
+  var container = (0, _jquery2.default)('#contact-panel');
+  if (!container.is(e.target) // if the target of the click isn't the container...
+  && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+      container.removeClass('is-active');
+    }
+});
+
+// Gets an optional query string from our url (i.e. ?post_id=23)
+var url = window.location.search;
+var postId;
+// Sets a flag for whether or not we're updating a post to be false initially
+var updating = false;
+
+// If we have this section in our url, we pull out the post id from the url
+// In localhost:8080/cms?post_id=1, postId is 1
+// if (url.indexOf("?post_id=") !== -1) {
+//   postId = url.split("=")[1];
+//   getPostData(postId);
+// }
+
+// Getting jQuery references to the post body, title, form, and category select
+var componentForm = (0, _jquery2.default)("#message-us-component");
+var nameInput = (0, _jquery2.default)("#message-us-name");
+var emailInput = (0, _jquery2.default)("#message-us-email");
+var messageInput = (0, _jquery2.default)("#message-us-message");
+
+// Adding an event listener for when the form is submitted
+(0, _jquery2.default)(componentForm).on("submit", function handleFormSubmit(event) {
+  event.preventDefault();
+  // Wont submit the post if we are missing a body or a title
+
+  // Constructing a newMessage object to hand to the database
+  var newMessage = {
+    name: nameInput.val().trim(),
+    email: emailInput.val().trim(),
+    message: messageInput.val().trim()
+  };
+
+  console.log(newMessage);
+
+  // If we're updating a post run updatePost to update a post
+  // Otherwise run submitPost to create a whole new post
+  if (updating) {
+    newMessage.id = messageId;
+    updateMessage(newMessage);
+  } else {
+    submitMessage(newMessage);
+  }
+});
+
+// Submits a new post and brings user to home page upon completion
+function submitMessage(Message) {
+  _jquery2.default.post("api/Messages/", Post, function () {
+    window.location.href = "/";
+  });
+}
+
+// Gets post data for a post if we're editing
+function getMessageData(id) {
+  _jquery2.default.get("api/Messages/" + id, function (data) {
+    if (data) {
+      nameInput.val(data.name);
+      emailInput.val(data.email);
+      messageInput.val(data.message);
+      updating = true;
+    }
+  });
+}
+
+// Update a given post, bring user to the home page when done
+function updateMessages(message) {
+  _jquery2.default.ajax({
+    method: "PUT",
+    url: "/api/Messages",
+    data: message
+  }).done(function () {
+    window.location.href = "/";
+  });
+}
+
+// }
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -11450,7 +11583,7 @@ Touch.init = function ($) {
 exports.Touch = Touch;
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11834,7 +11967,7 @@ Accordion.defaults = {
 exports.Accordion = Accordion;
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12226,7 +12359,7 @@ AccordionMenu.defaults = {
 exports.AccordionMenu = AccordionMenu;
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12842,7 +12975,7 @@ Drilldown.defaults = {
 exports.Drilldown = Drilldown;
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13377,7 +13510,7 @@ DropdownMenu.defaults = {
 exports.DropdownMenu = DropdownMenu;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13631,7 +13764,7 @@ Positionable.defaults = {
 exports.Positionable = Positionable;
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13814,7 +13947,7 @@ SmoothScroll.defaults = {
 exports.SmoothScroll = SmoothScroll;
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14368,7 +14501,7 @@ Tabs.defaults = {
 exports.Tabs = Tabs;
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14434,37 +14567,7 @@ function Timer(elem, options, cb) {
 exports.Timer = Timer;
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function get() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function get() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-/***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14474,13 +14577,17 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _whatInput = __webpack_require__(38);
+var _whatInput = __webpack_require__(40);
 
 var _whatInput2 = _interopRequireDefault(_whatInput);
 
-var _foundationSites = __webpack_require__(21);
+var _foundationSites = __webpack_require__(23);
 
 var _foundationSites2 = _interopRequireDefault(_foundationSites);
+
+__webpack_require__(11);
+
+__webpack_require__(41);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14491,10 +14598,12 @@ window.$ = _jquery2.default;
 //import './lib/foundation-explicit-pieces';
 
 
+// import './components/contact-us';
 (0, _jquery2.default)(document).foundation();
 
 /***/ }),
-/* 21 */
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14508,7 +14617,7 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _foundation = __webpack_require__(23);
+var _foundation = __webpack_require__(25);
 
 var _foundationUtil = __webpack_require__(1);
 
@@ -14524,53 +14633,53 @@ var _foundationUtil6 = __webpack_require__(6);
 
 var _foundationUtil7 = __webpack_require__(9);
 
-var _foundationUtil8 = __webpack_require__(18);
+var _foundationUtil8 = __webpack_require__(20);
 
-var _foundationUtil9 = __webpack_require__(10);
+var _foundationUtil9 = __webpack_require__(12);
 
 var _foundationUtil10 = __webpack_require__(5);
 
-var _foundation2 = __webpack_require__(22);
+var _foundation2 = __webpack_require__(24);
 
-var _foundation3 = __webpack_require__(11);
+var _foundation3 = __webpack_require__(13);
 
-var _foundation4 = __webpack_require__(12);
+var _foundation4 = __webpack_require__(14);
 
-var _foundation5 = __webpack_require__(13);
+var _foundation5 = __webpack_require__(15);
 
-var _foundation6 = __webpack_require__(24);
+var _foundation6 = __webpack_require__(26);
 
-var _foundation7 = __webpack_require__(14);
+var _foundation7 = __webpack_require__(16);
 
-var _foundation8 = __webpack_require__(25);
+var _foundation8 = __webpack_require__(27);
 
-var _foundation9 = __webpack_require__(26);
+var _foundation9 = __webpack_require__(28);
 
-var _foundation10 = __webpack_require__(27);
+var _foundation10 = __webpack_require__(29);
 
-var _foundation11 = __webpack_require__(28);
+var _foundation11 = __webpack_require__(30);
 
-var _foundation12 = __webpack_require__(29);
+var _foundation12 = __webpack_require__(31);
 
-var _foundation13 = __webpack_require__(31);
+var _foundation13 = __webpack_require__(33);
 
-var _foundation14 = __webpack_require__(32);
+var _foundation14 = __webpack_require__(34);
 
-var _foundation15 = __webpack_require__(33);
+var _foundation15 = __webpack_require__(35);
 
-var _foundation16 = __webpack_require__(34);
+var _foundation16 = __webpack_require__(36);
 
-var _foundation17 = __webpack_require__(16);
+var _foundation17 = __webpack_require__(18);
 
-var _foundation18 = __webpack_require__(35);
+var _foundation18 = __webpack_require__(37);
 
-var _foundation19 = __webpack_require__(17);
+var _foundation19 = __webpack_require__(19);
 
-var _foundation20 = __webpack_require__(36);
+var _foundation20 = __webpack_require__(38);
 
-var _foundation21 = __webpack_require__(37);
+var _foundation21 = __webpack_require__(39);
 
-var _foundation22 = __webpack_require__(30);
+var _foundation22 = __webpack_require__(32);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14644,7 +14753,7 @@ _foundation.Foundation.plugin(_foundation22.ResponsiveAccordionTabs, 'Responsive
 exports.default = _foundation.Foundation;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15314,7 +15423,7 @@ Abide.defaults = {
 exports.Abide = Abide;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15679,7 +15788,7 @@ function hyphenate(str) {
 exports.Foundation = Foundation;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15702,7 +15811,7 @@ var _foundationUtil = __webpack_require__(3);
 
 var _foundationUtil2 = __webpack_require__(1);
 
-var _foundation = __webpack_require__(15);
+var _foundation = __webpack_require__(17);
 
 var _foundationUtil3 = __webpack_require__(5);
 
@@ -16132,7 +16241,7 @@ Dropdown.defaults = {
 exports.Dropdown = Dropdown;
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16539,7 +16648,7 @@ Equalizer.defaults = {
 exports.Equalizer = Equalizer;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16811,7 +16920,7 @@ Interchange.SPECIAL_QUERIES = {
 exports.Interchange = Interchange;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16832,7 +16941,7 @@ var _foundationUtil = __webpack_require__(1);
 
 var _foundation = __webpack_require__(2);
 
-var _foundation2 = __webpack_require__(16);
+var _foundation2 = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17133,7 +17242,7 @@ Magellan.defaults = {
 exports.Magellan = Magellan;
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17761,7 +17870,7 @@ OffCanvas.defaults = {
 exports.OffCanvas = OffCanvas;
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17782,7 +17891,7 @@ var _foundationUtil = __webpack_require__(3);
 
 var _foundationUtil2 = __webpack_require__(6);
 
-var _foundationUtil3 = __webpack_require__(18);
+var _foundationUtil3 = __webpack_require__(20);
 
 var _foundationUtil4 = __webpack_require__(8);
 
@@ -17790,7 +17899,7 @@ var _foundationUtil5 = __webpack_require__(1);
 
 var _foundation = __webpack_require__(2);
 
-var _foundationUtil6 = __webpack_require__(10);
+var _foundationUtil6 = __webpack_require__(12);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18369,7 +18478,7 @@ Orbit.defaults = {
 exports.Orbit = Orbit;
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18392,9 +18501,9 @@ var _foundationUtil2 = __webpack_require__(1);
 
 var _foundation = __webpack_require__(2);
 
-var _foundation2 = __webpack_require__(11);
+var _foundation2 = __webpack_require__(13);
 
-var _foundation3 = __webpack_require__(17);
+var _foundation3 = __webpack_require__(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18665,7 +18774,7 @@ ResponsiveAccordionTabs.defaults = {};
 exports.ResponsiveAccordionTabs = ResponsiveAccordionTabs;
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18688,11 +18797,11 @@ var _foundationUtil2 = __webpack_require__(1);
 
 var _foundation = __webpack_require__(2);
 
-var _foundation2 = __webpack_require__(14);
+var _foundation2 = __webpack_require__(16);
 
-var _foundation3 = __webpack_require__(13);
+var _foundation3 = __webpack_require__(15);
 
-var _foundation4 = __webpack_require__(12);
+var _foundation4 = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18874,7 +18983,7 @@ ResponsiveMenu.defaults = {};
 exports.ResponsiveMenu = ResponsiveMenu;
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19082,7 +19191,7 @@ ResponsiveToggle.defaults = {
 exports.ResponsiveToggle = ResponsiveToggle;
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19732,7 +19841,7 @@ function mobileSniff() {
 exports.Reveal = Reveal;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19757,7 +19866,7 @@ var _foundationUtil3 = __webpack_require__(1);
 
 var _foundation = __webpack_require__(2);
 
-var _foundationUtil4 = __webpack_require__(10);
+var _foundationUtil4 = __webpack_require__(12);
 
 var _foundationUtil5 = __webpack_require__(5);
 
@@ -20542,7 +20651,7 @@ function baseLog(base, value) {
 exports.Slider = Slider;
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21128,7 +21237,7 @@ function emCalc(em) {
 exports.Sticky = Sticky;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21330,7 +21439,7 @@ Toggler.defaults = {
 exports.Toggler = Toggler;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21355,7 +21464,7 @@ var _foundationUtil2 = __webpack_require__(4);
 
 var _foundationUtil3 = __webpack_require__(5);
 
-var _foundation = __webpack_require__(15);
+var _foundation = __webpack_require__(17);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21848,7 +21957,7 @@ Tooltip.defaults = {
 exports.Tooltip = Tooltip;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22236,13 +22345,173 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	);
 });
 ;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(20);
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+window.$ = _jquery2.default;
+
+var debugTodo = true;
+
+(0, _jquery2.default)(document).ready(function () {
+  // Getting a reference to the input field where user adds a new todo
+  var $newItemInput = (0, _jquery2.default)("input.new-item");
+  // Our new todos will go inside the todoContainer
+  var $todoContainer = (0, _jquery2.default)(".todo-container");
+
+  // Adding event listeners for deleting, editing, and adding todos
+  (0, _jquery2.default)(document).on("click", "button.delete", deleteTodo);
+  (0, _jquery2.default)(document).on("click", "button.complete", toggleComplete);
+  (0, _jquery2.default)(document).on("click", ".todo-item", editTodo);
+  (0, _jquery2.default)(document).on("keyup", ".todo-item", finishEdit);
+  (0, _jquery2.default)(document).on("blur", ".todo-item", cancelEdit);
+
+  // when the submit button inside form#todo-form is clicked
+  (0, _jquery2.default)(document).on("submit", "#todo-form", insertTodo);
+
+  // Our initial todos array
+  var todos = [];
+
+  // Getting todos from database when page loads
+  getTodos();
+
+  /* Foundation Component
+    <li>
+      <input id="item6" type="checkbox"></input>
+      <label for="item6"></label>Item 6
+      </li>
+  */
+
+  // This function constructs a todo-item row
+  function createNewRow(todo) {
+    var $newInputRow = (0, _jquery2.default)(["<li class='list-group-item todo-item'>", "<label class='complete' for=\"item" + todo.id + "\"></label>",
+    // Where the text will go
+    "<span>", "" + todo.text, "</span>", "<input type='text' id=\"item" + todo.id + "\" class='edit' style='display: none;'>", "<button class='delete btn btn-default'>x</button>",
+    // `<button class='complete btn btn-default'>✓</button>`,
+    // Screen reader friendly
+    // `<button class="button delete" type="button">
+    //   <span class="show-for-sr">Close</span>
+    //   <span aria-hidden="true">
+    //   <i class="fi-x"></i></span>
+    //   </button>`,
+    "</li>"].join(""));
+
+    $newInputRow.find("button.delete").data("id", todo.id);
+    $newInputRow.find("input.edit").css("display", "none");
+    $newInputRow.data("todo", todo);
+    if (todo.complete) {
+      $newInputRow.find("span").css("text-decoration", "line-through");
+    }
+    return $newInputRow;
+    console.log("added new item to the list");
+  }
+
+  // This function resets the todos displayed with new todos from the database
+  function initializeRows() {
+    $todoContainer.empty();
+    var rowsToAdd = [];
+    for (var i = 0; i < todos.length; i++) {
+      rowsToAdd.push(createNewRow(todos[i]));
+    }
+    $todoContainer.prepend(rowsToAdd);
+  }
+
+  // This function grabs todos from the database and updates the view
+  function getTodos() {
+    _jquery2.default.get("/api/todos", function (data) {
+      todos = data;
+      initializeRows();
+    });
+  }
+
+  // This function deletes a todo when the user clicks the delete button
+  function deleteTodo(event) {
+    event.stopPropagation();
+    var id = (0, _jquery2.default)(this).data("id");
+    _jquery2.default.ajax({
+      method: "DELETE",
+      url: "/api/todos/" + id
+    }).done(getTodos);
+  }
+
+  // This function handles showing the input box for a user to edit a todo
+  function editTodo() {
+    var currentTodo = (0, _jquery2.default)(this).data("todo");
+    (0, _jquery2.default)(this).children().hide();
+    (0, _jquery2.default)(this).children("input.edit").val(currentTodo.text);
+    (0, _jquery2.default)(this).children("input.edit").show();
+    (0, _jquery2.default)(this).children("input.edit").focus();
+  }
+
+  // Toggles complete status
+  function toggleComplete(event) {
+    event.stopPropagation();
+    var todo = (0, _jquery2.default)(this).parent().data("todo");
+    todo.complete = !todo.complete;
+    updateTodo(todo);
+  }
+
+  // This function starts updating a todo in the database if a user hits the "Enter Key"
+  // While in edit mode
+  function finishEdit() {
+    var updatedTodo = (0, _jquery2.default)(this).data("todo");
+    if (event.keyCode === 13) {
+      updatedTodo.text = (0, _jquery2.default)(this).children("input").val().trim();
+      (0, _jquery2.default)(this).blur();
+      updateTodo(updatedTodo);
+    }
+  }
+
+  // This function updates a todo in our database
+  function updateTodo(todo) {
+    _jquery2.default.ajax({
+      method: "PUT",
+      url: "/api/todos",
+      data: todo
+    }).done(getTodos);
+  }
+
+  // This function is called whenever a todo item is in edit mode and loses focus
+  // This cancels any edits being made
+  function cancelEdit() {
+    var currentTodo = (0, _jquery2.default)(this).data("todo");
+    if (currentTodo) {
+      (0, _jquery2.default)(this).children().hide();
+      (0, _jquery2.default)(this).children("input.edit").val(currentTodo.text);
+      (0, _jquery2.default)(this).children("span").show();
+      (0, _jquery2.default)(this).children("button").show();
+    }
+  }
+
+  // This function inserts a new todo into our database and then updates the view
+  function insertTodo(event) {
+    event.preventDefault();
+    var todo = {
+      text: $newItemInput.val().trim(),
+      complete: false
+    };
+
+    _jquery2.default.post("/api/todos", todo, getTodos);
+    $newItemInput.val("");
+  }
+});
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(21);
 
 
 /***/ })
