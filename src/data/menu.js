@@ -24,8 +24,16 @@ var menu = {
   ],  
   topbar: [
     {
-      url: "/home",
-      name: "home"
+      url: "/",
+      name: "Component"
+    },
+    {
+      url: "/login",
+      name: "login"
+    },
+    {
+      url: "/register",
+      name: "register"
     }
   ],
   templates: [
