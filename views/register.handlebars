@@ -1,31 +1,31 @@
 {{#if success_msg}}
-  <div class="alert alert-success">{{success_msg}}</div>
+  <div class="callout success">{{success_msg}}</div>
 {{/if}}
 
 {{#if error_msg}}
-  <div class="alert alert-danger">{{error_msg}}</div>
+  <div class="callout alert">{{error_msg}}</div>
 {{/if}}
 
 {{#if error}}
-  <div class="alert alert-danger">{{error}}</div>
+  <div class="callout alert">{{error}}</div>
 {{/if}}
 {{#if errors}}
       {{#each errors}}
-        <div class="alert alert-danger">{{msg}}</div>
+        <div class="callout alert">{{msg}}</div>
       {{/each}}
 {{/if}}
 
 <div class="login-box">
   <div class="row collapse expanded">
     <div class="small-12 medium-6 column small-order-2 medium-order-1">
-      <div class="login-box-form-section">
+      <form method="post" action="/register" class="login-box-form-section">
         <h1 class="login-box-title">Sign up</h1>
         <input class="login-box-input" type="text" name="username" placeholder="Username" />
         <input class="login-box-input" type="email" name="email" placeholder="E-mail" />
         <input class="login-box-input" type="password" name="password" placeholder="Password" />
         <input class="login-box-input" type="password" name="password2" placeholder="Retype password" />
         <input class="login-box-submit-button" type="submit" name="signup_submit" value="Sign me up" />
-      </div>
+      </form >
       <div class="or">OR</div>
     </div>
     <div class="small-12 medium-6 column small-order-1 medium-order-2 login-box-social-section">
