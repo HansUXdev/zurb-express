@@ -18,7 +18,7 @@ module.exports = function(app) {
     db.Messages.create({
       name: req.body.name,
       email: req.body.email,
-      message: req.body.message
+      text: req.body.text
     })
     .then(function(dbMessage) {
       // res.json(dbMessage);
@@ -29,26 +29,26 @@ module.exports = function(app) {
 
 
 
-
-};
-
 // Seperate this
 
 // var MessageController = function(app){
-//    app.get("/api/Messages/", function(req, res) {
-//     db.Messages.findAll({
-//       // find what ever data you want
-//     })
-//     .then(function(dbMessage) {
-//       res.json(dbMessage);
-//       // // into the main index, updating the page
-//       // var hbsObject = {
-//       //   messages: dbMessage
-//       // };
-//       // return res.render("index", hbsObject);
-//     });
-//   });
+  //  app.get("/api/Messages/", function(req, res) {
+  //   db.Messages.findAll({
+  //     // find what ever data you want
+  //   })
+  //   .then(function(dbMessage) {
+  //     res.json(dbMessage);
+  //     // // into the main index, updating the page
+  //     var hbsObject = {
+  //       messages: dbMessage
+  //     };
+  //     return res.render("index", hbsObject);
+  //   });
+  // });
 // };
 // module.exports = MessageController;
+
+
+};
 
 

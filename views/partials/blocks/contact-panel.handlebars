@@ -1,22 +1,19 @@
 <div class="contact-panel" id="contact-panel" data-toggler=".is-active">
   <a class="contact-panel-button" data-toggle="contact-panel">Contact us</a>
-  <form method="POST" action="/api/Messages/create">
+  <form action="">
     <div class="row">
       <label>Full name *
-        <input type="text" name="name" placeholder="Full name" 
-        id="message-us-name">
+        <input type="text" placeholder="Full name">
       </label>
     </div>
     <div class="row">
       <label>Email *
-        <input type="email" name="email" placeholder="Email address" 
-        id="message-us-email">
+        <input type="email" placeholder="Email address">
       </label>
     </div>
     <div class="row">
       <label>Message *
-        <textarea  name="message" placeholder="Describe your needs" 
-        id="message-us-message" rows="3"></textarea>
+        <textarea placeholder="Describe your needs" rows="3"></textarea>
       </label>
     </div>
     <div class="contact-panel-actions">

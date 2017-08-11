@@ -14,4 +14,4 @@ $(document).foundation();
 import './building-blocks/contact-panel';
 
 import './components/to-do-list';
-// import './components/contact-us';
+import './components/contact-us';

@@ -13,6 +13,19 @@ import webpack2      from 'webpack';
 import named         from 'vinyl-named';
 import ext           from 'gulp-ext-replace';
 
+// use this for console commands
+const exec    = require('child_process').exec;
+// Check the status of the repo, add all changes, 
+// commit changes and push
+function commit(cb){
+  var command = `git status && git add -A && git commit -m "changed these files" && git push`
+    // Run the command
+    exec(command, function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    }); 
+}
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -44,13 +57,6 @@ gulp.task('build',
       blocks
   ));
 
-// Build the site, run the server, and watch for file changes
-gulp.task('default',
-  gulp.series('build', 
-    // server, 
-    watch)
-);
-
 // Delete the "dist" folder
 // This happens every time a build starts
 function clean(done) {
@@ -61,7 +67,7 @@ function clean(done) {
 function blocks(cb) {
   return gulp.src('src/partials/building-blocks/*')
     .pipe(ext('.handlebars'))
-    .pipe(gulp.dest('views/partials'));
+    .pipe(gulp.dest('views/partials/blocks'));
     cb();
 }
 
@@ -189,3 +195,11 @@ function watch() {
   // watch for when new building blocks are installed and move them over to the server
   gulp.watch('src/partials/building-blocks/**').on('all', gulp.series(blocks, browser.reload));
 }
+
+// Build the site, run the server, and watch for file changes
+gulp.task('default',
+  gulp.series('build', 
+    // server, 
+    watch)
+);
+gulp.task('init', commit)
