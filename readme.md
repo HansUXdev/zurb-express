@@ -21,16 +21,17 @@ Because I wanted a super lightweight MODERN server that is easy to learn, teach 
   - CSS compression
   - JavaScript compression
   - Image compression
-- Optional database (javascript object prototypes by default)
+- Authentication
+- Messaging (visitors can leave you a message).
+- Optional database (javascript object prototypes by default).
 
 ## Future Goals
 - [Heroku deployment !](https://www.heroku.com/)
 - Email server using [Foundation for Email](http://foundation.zurb.com/emails.html) and [inky templates](https://github.com/zurb/inky)
 - firebase components for plug and chug back-end
-- authentication
 - sql / mongodb schemas and ORM's for common backend usages like blogs, ecommerce
 - (Possibilities further down...) 
-  - Rewrite for markojs
+  - Rewrite for [markojs](http://markojs.com/)
 
 ## Installation
 
