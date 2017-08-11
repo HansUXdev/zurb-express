@@ -30,9 +30,7 @@ Because I wanted a super lightweight MODERN server that is easy to learn, teach 
 - authentication
 - sql / mongodb schemas and ORM's for common backend usages like blogs, ecommerce
 - (Possibilities further down...) 
-  - Optional CMS integration with [keystone.js](keystone.js)
-  - React version where [gulp-html2jsx](https://github.com/hemanth/gulp-html2jsx) automatically converts building blocks into react-components
-  - Web Componets with virtual dom (this would require substancial help and wont likely happen).
+  - Rewrite for markojs
 
 ## Installation
 
