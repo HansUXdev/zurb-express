@@ -6,14 +6,26 @@
 // ===============================================================================
 
 var menu = {
+  layouts: [
+    // {
+    //   url: "/admin",
+    //   layout: 'dashboard',
+    //   data: '/',
+    //   page:'admin/admin',
+    //   name: "Dashboard"
+    // },
+    {
+      url: "/offcanvas",
+      layout: 'offcanvas',
+      data: '/',
+      page:'pages/ecommerce',
+      name: "Offcanvas"
+    }
+  ],  
   topbar: [
     {
-      url: "/",
+      url: "/home",
       name: "home"
-    },
-    {
-      url: "/layout",
-      name: "Offcanvas"
     }
   ],
   templates: [

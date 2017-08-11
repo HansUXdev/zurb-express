@@ -9,13 +9,20 @@
     <div class="top-bar-right">
       <ul class="menu simple vertical medium-horizontal">
         {{!-- Custom Pages --}}
+        {{#each menu.topbar}}
+        <li><a href="{{url}}">{{name}}</a></li>
+        {{/each}}
         <ul class="dropdown menu" data-dropdown-menu>
           <li>
-            <a href="#">Custom</a>
+            <a href="#">Layouts</a>
             <ul class="menu">
-              {{#each menu.topbar}}
-              <li><a href="{{url}}">{{name}}</a></li>
-              {{/each}}
+              {{#if menu.layouts}}
+                {{#each menu.layouts}}
+                <li><a href="{{url}}">{{name}}</a></li>
+                {{/each}}
+              {{else}}
+                <p>No layouts</p>
+              {{/if}}
             </ul>
           </li>
         </ul>

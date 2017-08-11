@@ -5,22 +5,36 @@ import yargs         from 'yargs';
 import browser       from 'browser-sync';
 // import nodemon       from 'gulp-nodemon';
 import gulp          from 'gulp';
-import panini        from 'panini';
-import rimraf        from 'rimraf';
-import sherpa        from 'style-sherpa';
 import yaml          from 'js-yaml';
+import rimraf        from 'rimraf';
 import fs            from 'fs';
 import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
 import named         from 'vinyl-named';
 import ext           from 'gulp-ext-replace';
 
+// use this for console commands
+const exec    = require('child_process').exec;
+// Check the status of the repo, add all changes, 
+// commit changes and push
+function commit(cb){
+  var command = `git status && git add -A && git commit -m "changed these files" && git push`
+    // Run the command
+    exec(command, function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    }); 
+}
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
 
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
+// var argv         = require('yargs').argv;
+// var isProduction = !!(argv.production);
+
 
 // Load settings from settings.yml
 const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS } = loadConfig();
@@ -35,21 +49,13 @@ gulp.task('build',
  gulp.series(
     clean, 
     gulp.parallel(
-      // pages, 
       sass, 
       javascript, 
       images, 
-      copy), 
-    blocks
-    // rename
+      copy
+      ), 
+      blocks
   ));
-
-// Build the site, run the server, and watch for file changes
-gulp.task('default',
-  gulp.series('build', 
-    // server, 
-    watch)
-);
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -57,12 +63,11 @@ function clean(done) {
   rimraf(PATHS.dist, done);
 }
 
-// Copy files out of the assets folder
-// This task skips over the "img", "js", and "scss" folders, which are parsed separately
+// Copy files out of the src/partials/building-blocks folder
 function blocks(cb) {
   return gulp.src('src/partials/building-blocks/*')
     .pipe(ext('.handlebars'))
-    .pipe(gulp.dest('views/partials'));
+    .pipe(gulp.dest('views/partials/blocks'));
     cb();
 }
 
@@ -73,18 +78,6 @@ function copy() {
     .pipe(gulp.dest(PATHS.dist + '/assets'));
 }
 
-// Copy page templates into finished HTML files
-function pages() {
-  return gulp.src('src/pages/**/*.{html,hbs,handlebars}')
-    .pipe(panini({
-      root: 'src/pages/',
-      layouts: 'src/layouts/',
-      partials: 'src/partials/',
-      data: 'src/data/',
-      helpers: 'src/helpers/'
-    }))
-    .pipe(gulp.dest(PATHS.dist));
-}
 
 // Load updated HTML templates and partials into Panini
 function resetPages(done) {
@@ -92,19 +85,7 @@ function resetPages(done) {
   done();
 }
 
-// Rename the extensions of all html files
-function rename(done) {
-  gulp.src('src/layouts/*.hbs')
-      .pipe(ext('.handlebars'))
-      .pipe(gulp.dest('src/layouts'))
-  gulp.src('src/partials/*/*.html')
-      .pipe(ext('.handlebars'))
-      .pipe(gulp.dest('src/partials'))
-  gulp.src('src/pages/*.html')
-      .pipe(ext('.handlebars'))
-      .pipe(gulp.dest('src/pages'))
-  done();
-}
+
 
 // Generate a style guide from the Markdown content and HTML template in styleguide/
 // function styleGuide(done) {
@@ -123,6 +104,19 @@ function sass() {
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
+    // .pipe(
+    //   $.pleeease({
+    //     sass: true,
+    //     autoprefixer: COMPATIBILITY,
+    //     // includePaths: PATHS.sass,
+    //     sourcemaps: PATHS.sourcemaps,
+    //     mqpacker: true,
+    //     // rem: false,
+    //     pseudoElements: false,  // Converts ::before to :before
+    //     opacity: true,          // Filter for IE 8
+    //     minifier: isProduction ? true : false, 
+    //   })
+    // )
     // Comment in the pipe below to run UnCSS in production
     //.pipe($.if(PRODUCTION, $.uncss(UNCSS_OPTIONS)))
     .pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))
@@ -195,11 +189,17 @@ function reload(done) {
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.assets, copy);
-  gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, browser.reload));
-  gulp.watch('src/{layouts,partials}/**/*.html').on('all', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript, browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
-  // 
+  // watch for when new building blocks are installed and move them over to the server
   gulp.watch('src/partials/building-blocks/**').on('all', gulp.series(blocks, browser.reload));
 }
+
+// Build the site, run the server, and watch for file changes
+gulp.task('default',
+  gulp.series('build', 
+    // server, 
+    watch)
+);
+gulp.task('init', commit)
