@@ -9,7 +9,7 @@ module.exports = function(app,menu) {
 
  // Require your backend components if you need them
   // require("./controllers/to-do.js")(app);
-  // require("./controllers/contact-panel.js")(app);
+  require("./controllers/contact-panel.js")(app);
 
   // catch 404 and forward to error handler
   // app.use(function(req, res, next) {

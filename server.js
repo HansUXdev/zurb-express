@@ -105,15 +105,15 @@ app.set("view engine", "handlebars");
 
 
 // app.listen(port);
-app.set('port', (process.env.PORT || 8000));
+// app.set('port', (process.env.PORT || 8000));
 
-app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
-});
+// app.listen(app.get('port'), function(){
+// 	console.log('Server started on port '+app.get('port'));
+// });
 
 // Syncing our sequelize models and then starting our express app
-// db.sequelize.sync({ force: true }).then(function() {
-//   app.listen(PORT, function() {
-//     console.log("App listening on PORT " + PORT);
-//   });
-// });
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});

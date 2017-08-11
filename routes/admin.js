@@ -1,5 +1,5 @@
 // sequelize
-// var db = require("../models");
+var db = require("../models");
 
 // mongoose 
 var User = require('../db/mongo/users');
@@ -116,8 +116,19 @@ module.exports = function(app, passport,LocalStrategy,flash) {
   
   // Get Agin only when Authenticated
   app.get('/admin/admin', ensureAuthenticated, function(req, res){
-    res.render('admin');
+    // find all the messages ever data you want
+    db.Messages.findAll({})
+    .then(function(dbMessage) {
+      res.json(dbMessage);
+      return res.render("admin", {
+        messages: dbMessage
+      });
+    });
+    // res.render('admin');
   });
+
+
+
 
   function ensureAuthenticated(req, res, next){
     if(req.isAuthenticated()){
