@@ -1,0 +1,45 @@
+////
+/// @group Marketing
+////
+
+/// Hero height
+$marketing-site-hero-height: 65vh;
+/// Hero width
+$marketing-site-hero-width: $global-width;
+/// Background Image for hero
+$marketing-site-hero-img: 'https://images.pexels.com/photos/8264/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb';
+
+
+.marketing-site-hero {
+  background: url($marketing-site-hero-img) top right no-repeat;
+  height: $marketing-site-hero-height;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 40em) {
+    background-position: center center;
+  }
+}
+
+.marketing-site-hero-content {
+  max-width: $marketing-site-hero-width;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .button.round {
+    border-radius: 5000px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+
+  @media screen and (min-width: 40em) {
+    padding-left: 50%;
+  }
+}
