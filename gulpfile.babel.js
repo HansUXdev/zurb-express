@@ -95,7 +95,7 @@ function resetPages(done) {
 
 // Compile Sass into CSS
 // In production, the CSS is compressed
-gulp.task('sass', commit, watch)
+gulp.task('sass', sass, watch)
 function sass() {
   return gulp.src('src/assets/scss/app.scss')
     .pipe($.sourcemaps.init())
