@@ -1,0 +1,85 @@
+//  Building-Blocks Settings
+//  ------------------------
+//
+//  Table of Contents:
+//
+//   1. Contact Panel
+//   2. Dashboard
+//   3. Login & Sign Up
+//   4. Marketing
+//   5. Offcanvas Menu
+//   6. Status Input
+//   7. Todo List
+//   8. Topbar
+
+
+// 1. Contact Panel
+// ----------------
+
+$contact-panel-bg: $black;
+$contact-panel-height: 375px;
+$contact-panel-width: 350px;
+$contact-panel-right-offset: 20px;
+$contact-panel-button-arrow: ⥣;
+
+// 2. Dashboard
+// ------------
+
+$app-dashboard-top-nav-color: #2c3840;
+$app-dashboard-top-nav-height: 55px;
+$dashboard-table-primary-color: $dark-gray;
+$dashboard-table-secondary-color: $light-gray;
+
+// 3. Login & Sign Up
+// ------------------
+
+$login-box-radius: $global-radius;
+$login-box-bg: $white;
+$login-box-shadow: 0 2px 4px rgba($black, 0.4);
+$login-box-inner-padding: 2.5rem;
+$login-box-social-bg: url('https://images.pexels.com/photos/179124/pexels-photo-179124.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+$social-brand-facebook: #3b5998;
+$social-brand-twitter: #55acee;
+$social-brand-linkedin: #007bb5;
+$social-brand-youtube: #bb0000;
+$social-brand-instagram: #125688;
+$social-brand-pinterest: #cb2027;
+$social-brand-google-plus: #dd4b39;
+$social-brand-github: #000000;
+$social-brand-tumblr: #32506d;
+$sign-in-form-text-primary-color: white;
+$sign-in-form-text-button-color: #fff;
+
+// 4. Marketing
+// ------------
+
+$marketing-site-three-up-width: 900px;
+
+// 5. Offcanvas Menu
+// -----------------
+
+$nav-text-color: $white;
+$nav-height: 75px;
+$nav-background: #2c3840;
+$offcanvas-padding: 20px;
+$offcanvas-full-screen-bg: $black;
+$offcanvas-full-screen-side: left;
+$offcanvas-full-screen-closebutton-size: 5rem;
+
+// 6. Status Input
+// ---------------
+
+$status-update-input-box: $white;
+
+// 7. Todo List
+// ------------
+
+$todo-list-card-bg: $white;
+$todo-list-card-ul-bg: $light-gray;
+
+// 8. Topbar
+// ---------
+
+$topbar-responsive-bg: #2c3840;
+$topbar-responsive-animation-type: fade-in;
+

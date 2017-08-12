@@ -1,5 +1,14 @@
+////
+/// @group Todo List
+////
+
+///
+$todo-list-card-bg: $white;
+///
+$todo-list-card-ul-bg: $light-gray;
+
 .todo-list-card {
-  background-color: $white;
+  background-color: $todo-list-card-bg;
   border-radius: $global-radius;
   max-width: 300px;
 
@@ -21,7 +30,7 @@
     list-style-type: none;
     margin: 0;
     li {
-      background-color: $light-gray;
+      background-color: $todo-list-card-ul-bg;
       margin: 10px 0;
       padding: 10px;
     }
@@ -36,7 +45,7 @@
     }
     input[type="checkbox"] ~ label::after {
       background: $white;
-      border: 1px solid $light-gray;
+      border: 1px solid $todo-list-card-ul-bg;
       content: '';
       display: block;
       height: 20px;

@@ -12,6 +12,7 @@ import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
 import named         from 'vinyl-named';
 import ext           from 'gulp-ext-replace';
+import octophant     from 'octophant';
 
 // use this for console commands
 const exec    = require('child_process').exec;
@@ -162,6 +163,50 @@ function images() {
 }
 
 
+gulp.task('theme', scssTheme)
+// Collects variables from SCSS files and ameks a settings file.
+// Aka makes your (s)css maintainable
+
+function scssTheme(cb) {
+  var options = {
+    title: 'Building-Blocks Settings',
+    output: './src/assets/scss/_block-settings.scss',
+    groups: {
+      'app-dashboard-layout': 'The Dashboard',
+      'dashboard-table': 'Dashboard Table',
+      'contact-panel': 'Contact Panel',
+      'login-box': 'Login',
+      '_multilevel-offcanvas-menu':'Offcanvas-Menu',
+      'topbar-responsive': 'Topbar',
+      'marketing-site-three-up': 'Marketing',
+      'todo-list-card': 'Todo List',
+      'status-update-input-box':'Status Input',
+    },
+
+    sort: [
+      'Dashboard',
+      'Offcanvas-Menu',
+      'Topbar',
+      'Login & Sign up',
+      'Contact Panel',
+      'Status Input',
+      'Todo List',
+      'Marketing',
+    ],
+    /////
+    // imports (Array): A series of strings which represent Sass libraries to import. 
+    // These libraries are added as @import statements before the first section.
+    /////
+    // imports: ['util/util'],
+
+    // _foundationShim: true
+  }
+  //parser(files [, options, cb])
+  octophant('./src/assets/scss/components/building-blocks/', options, cb);
+}
+
+
+// Start a server with BrowserSync to preview the site in
 // function nodemon() {
 //   nodemon({
 //     script: 'server.js', 
@@ -169,10 +214,6 @@ function images() {
 //     env: { 'NODE_ENV': 'development' }
 //   })
 // }
-
-
-
-// Start a server with BrowserSync to preview the site in
 function server(done) {
   browser.init({
     server: PATHS.dist, port: PORT
