@@ -10979,7 +10979,7 @@ function OverlapArea(element, parent, lrOnly, tbOnly, ignoreBottom) {
  * @returns {Object} - nested object of integer pixel values
  * TODO - if element is window, return only those values.
  */
-function GetDimensions(elem) {
+function GetDimensions(elem, test) {
   elem = elem.length ? elem[0] : elem;
 
   if (elem === window || elem === document) {
@@ -11958,6 +11958,8 @@ var AccordionMenu = function (_Plugin) {
       this.options = _jquery2.default.extend({}, AccordionMenu.defaults, this.$element.data(), options);
       this.className = 'AccordionMenu'; // ie9 back compat
 
+      _foundationUtil2.Nest.Feather(this.$element, 'accordion');
+
       this._init();
 
       _foundationUtil.Keyboard.register('AccordionMenu', {
@@ -11979,8 +11981,6 @@ var AccordionMenu = function (_Plugin) {
   }, {
     key: '_init',
     value: function _init() {
-      _foundationUtil2.Nest.Feather(this.$element, 'accordion');
-
       var _this = this;
 
       this.$element.find('[data-submenu]').not('.is-active').slideUp(0); //.find('a').css('padding-left', '1rem');
@@ -12352,6 +12352,8 @@ var Drilldown = function (_Plugin) {
       this.options = _jquery2.default.extend({}, Drilldown.defaults, this.$element.data(), options);
       this.className = 'Drilldown'; // ie9 back compat
 
+      _foundationUtil2.Nest.Feather(this.$element, 'drilldown');
+
       this._init();
 
       _foundationUtil.Keyboard.register('Drilldown', {
@@ -12375,8 +12377,6 @@ var Drilldown = function (_Plugin) {
   }, {
     key: '_init',
     value: function _init() {
-      _foundationUtil2.Nest.Feather(this.$element, 'drilldown');
-
       if (this.options.autoApplyClass) {
         this.$element.addClass('drilldown');
       }
@@ -12415,7 +12415,7 @@ var Drilldown = function (_Plugin) {
         var $link = (0, _jquery2.default)(this);
         var $sub = $link.parent();
         if (_this.options.parentLink) {
-          $link.clone().prependTo($sub.children('[data-submenu]')).wrap('<li class="is-submenu-parent-item is-submenu-item is-drilldown-submenu-item" role="menuitem"></li>');
+          $link.clone().prependTo($sub.children('[data-submenu]')).wrap('<li class="is-submenu-parent-item is-submenu-item is-drilldown-submenu-item" role="menu-item"></li>');
         }
         $link.data('savedHref', $link.attr('href')).removeAttr('href').attr('tabindex', 0);
         $link.children('[data-submenu]').attr({
@@ -12969,6 +12969,7 @@ var DropdownMenu = function (_Plugin) {
       this.options = _jquery2.default.extend({}, DropdownMenu.defaults, this.$element.data(), options);
       this.className = 'DropdownMenu'; // ie9 back compat
 
+      _foundationUtil2.Nest.Feather(this.$element, 'dropdown');
       this._init();
 
       _foundationUtil.Keyboard.register('DropdownMenu', {
@@ -12991,8 +12992,6 @@ var DropdownMenu = function (_Plugin) {
   }, {
     key: '_init',
     value: function _init() {
-      _foundationUtil2.Nest.Feather(this.$element, 'dropdown');
-
       var subs = this.$element.find('li.is-dropdown-submenu-parent');
       this.$element.children('.is-dropdown-submenu-parent').children('.is-dropdown-submenu').addClass('first-sub');
 
@@ -13124,8 +13123,10 @@ var DropdownMenu = function (_Plugin) {
         });
 
         var nextSibling = function nextSibling() {
-          $nextElement.children('a:first').focus();
-          e.preventDefault();
+          if (!$element.is(':last-child')) {
+            $nextElement.children('a:first').focus();
+            e.preventDefault();
+          }
         },
             prevSibling = function prevSibling() {
           $prevElement.children('a:first').focus();
@@ -14735,7 +14736,7 @@ var Abide = function (_Plugin) {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       this.$element = element;
-      this.options = _jquery2.default.extend(true, {}, Abide.defaults, this.$element.data(), options);
+      this.options = _jquery2.default.extend({}, Abide.defaults, this.$element.data(), options);
 
       this.className = 'Abide'; // ie9 back compat
       this._init();
@@ -15372,7 +15373,7 @@ var _foundationUtil2 = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FOUNDATION_VERSION = '6.4.2';
+var FOUNDATION_VERSION = '6.4.1';
 
 // Global Foundation object
 // This is attached to the window, or used as a module for AMD/Browserify
@@ -15804,16 +15805,15 @@ var Dropdown = function (_Positionable) {
     value: function _init() {
       var $id = this.$element.attr('id');
 
-      this.$anchors = (0, _jquery2.default)('[data-toggle="' + $id + '"]').length ? (0, _jquery2.default)('[data-toggle="' + $id + '"]') : (0, _jquery2.default)('[data-open="' + $id + '"]');
-      this.$anchors.attr({
+      this.$anchor = (0, _jquery2.default)('[data-toggle="' + $id + '"]').length ? (0, _jquery2.default)('[data-toggle="' + $id + '"]') : (0, _jquery2.default)('[data-open="' + $id + '"]');
+      this.$anchor.attr({
         'aria-controls': $id,
         'data-is-focus': false,
         'data-yeti-box': $id,
         'aria-haspopup': true,
         'aria-expanded': false
-      });
 
-      this._setCurrentAnchor(this.$anchors.first());
+      });
 
       if (this.options.parentClass) {
         this.$parent = this.$element.parents('.' + this.options.parentClass);
@@ -15825,7 +15825,7 @@ var Dropdown = function (_Positionable) {
         'aria-hidden': 'true',
         'data-yeti-box': $id,
         'data-resize': $id,
-        'aria-labelledby': this.$currentAnchor.id || (0, _foundationUtil2.GetYoDigits)(6, 'dd-anchor')
+        'aria-labelledby': this.$anchor[0].id || (0, _foundationUtil2.GetYoDigits)(6, 'dd-anchor')
       });
       _get(Dropdown.prototype.__proto__ || Object.getPrototypeOf(Dropdown.prototype), '_init', this).call(this);
       this._events();
@@ -15845,7 +15845,7 @@ var Dropdown = function (_Positionable) {
     key: '_getDefaultAlignment',
     value: function _getDefaultAlignment() {
       // handle legacy float approach
-      var horizontalPosition = /float-(\S+)/.exec(this.$currentAnchor.className);
+      var horizontalPosition = /float-(\S+)/.exec(this.$anchor[0].className);
       if (horizontalPosition) {
         return horizontalPosition[1];
       }
@@ -15863,21 +15863,7 @@ var Dropdown = function (_Positionable) {
   }, {
     key: '_setPosition',
     value: function _setPosition() {
-      _get(Dropdown.prototype.__proto__ || Object.getPrototypeOf(Dropdown.prototype), '_setPosition', this).call(this, this.$currentAnchor, this.$element, this.$parent);
-    }
-
-    /**
-     * Make it a current anchor.
-     * Current anchor as the reference for the position of Dropdown panes.
-     * @param {HTML} el - DOM element of the anchor.
-     * @function
-     * @private
-     */
-
-  }, {
-    key: '_setCurrentAnchor',
-    value: function _setCurrentAnchor(el) {
-      this.$currentAnchor = (0, _jquery2.default)(el);
+      _get(Dropdown.prototype.__proto__ || Object.getPrototypeOf(Dropdown.prototype), '_setPosition', this).call(this, this.$anchor, this.$element, this.$parent);
     }
 
     /**
@@ -15897,27 +15883,21 @@ var Dropdown = function (_Positionable) {
         'resizeme.zf.trigger': this._setPosition.bind(this)
       });
 
-      this.$anchors.off('click.zf.trigger').on('click.zf.trigger', function () {
-        _this._setCurrentAnchor(this);
-      });
-
       if (this.options.hover) {
-        this.$anchors.off('mouseenter.zf.dropdown mouseleave.zf.dropdown').on('mouseenter.zf.dropdown', function () {
-          _this._setCurrentAnchor(this);
-
+        this.$anchor.off('mouseenter.zf.dropdown mouseleave.zf.dropdown').on('mouseenter.zf.dropdown', function () {
           var bodyData = (0, _jquery2.default)('body').data();
           if (typeof bodyData.whatinput === 'undefined' || bodyData.whatinput === 'mouse') {
             clearTimeout(_this.timeout);
             _this.timeout = setTimeout(function () {
               _this.open();
-              _this.$anchors.data('hover', true);
+              _this.$anchor.data('hover', true);
             }, _this.options.hoverDelay);
           }
         }).on('mouseleave.zf.dropdown', function () {
           clearTimeout(_this.timeout);
           _this.timeout = setTimeout(function () {
             _this.close();
-            _this.$anchors.data('hover', false);
+            _this.$anchor.data('hover', false);
           }, _this.options.hoverDelay);
         });
         if (this.options.hoverPane) {
@@ -15927,19 +15907,19 @@ var Dropdown = function (_Positionable) {
             clearTimeout(_this.timeout);
             _this.timeout = setTimeout(function () {
               _this.close();
-              _this.$anchors.data('hover', false);
+              _this.$anchor.data('hover', false);
             }, _this.options.hoverDelay);
           });
         }
       }
-      this.$anchors.add(this.$element).on('keydown.zf.dropdown', function (e) {
+      this.$anchor.add(this.$element).on('keydown.zf.dropdown', function (e) {
 
         var $target = (0, _jquery2.default)(this),
             visibleFocusableElements = _foundationUtil.Keyboard.findFocusable(_this.$element);
 
         _foundationUtil.Keyboard.handleKey(e, 'Dropdown', {
           open: function open() {
-            if ($target.is(_this.$anchors)) {
+            if ($target.is(_this.$anchor)) {
               _this.open();
               _this.$element.attr('tabindex', -1).focus();
               e.preventDefault();
@@ -15947,7 +15927,7 @@ var Dropdown = function (_Positionable) {
           },
           close: function close() {
             _this.close();
-            _this.$anchors.focus();
+            _this.$anchor.focus();
           }
         });
       });
@@ -15965,7 +15945,7 @@ var Dropdown = function (_Positionable) {
       var $body = (0, _jquery2.default)(document.body).not(this.$element),
           _this = this;
       $body.off('click.zf.dropdown').on('click.zf.dropdown', function (e) {
-        if (_this.$anchors.is(e.target) || _this.$anchors.find(e.target).length) {
+        if (_this.$anchor.is(e.target) || _this.$anchor.find(e.target).length) {
           return;
         }
         if (_this.$element.find(e.target).length) {
@@ -15992,7 +15972,7 @@ var Dropdown = function (_Positionable) {
        * @event Dropdown#closeme
        */
       this.$element.trigger('closeme.zf.dropdown', this.$element.attr('id'));
-      this.$anchors.addClass('hover').attr({ 'aria-expanded': true });
+      this.$anchor.addClass('hover').attr({ 'aria-expanded': true });
       // this.$element/*.show()*/;
 
       this.$element.addClass('is-opening');
@@ -16035,7 +16015,7 @@ var Dropdown = function (_Positionable) {
       }
       this.$element.removeClass('is-open').attr({ 'aria-hidden': true });
 
-      this.$anchors.removeClass('hover').attr('aria-expanded', false);
+      this.$anchor.removeClass('hover').attr('aria-expanded', false);
 
       /**
        * Fires once the dropdown is no longer visible.
@@ -16057,7 +16037,7 @@ var Dropdown = function (_Positionable) {
     key: 'toggle',
     value: function toggle() {
       if (this.$element.hasClass('is-open')) {
-        if (this.$anchors.data('hover')) return;
+        if (this.$anchor.data('hover')) return;
         this.close();
       } else {
         this.open();
@@ -16073,7 +16053,7 @@ var Dropdown = function (_Positionable) {
     key: '_destroy',
     value: function _destroy() {
       this.$element.off('.zf.trigger').hide();
-      this.$anchors.off('.zf.dropdown');
+      this.$anchor.off('.zf.dropdown');
       (0, _jquery2.default)(document.body).off('click.zf.dropdown');
     }
   }]);
@@ -17408,17 +17388,15 @@ var OffCanvas = function (_Plugin) {
     /**
      * Removes the CSS transition/position classes of the off-canvas content container.
      * Removing the classes is important when another off-canvas gets opened that uses the same content container.
-     * @param {Boolean} hasReveal - true if related off-canvas element is revealed.
      * @private
      */
 
   }, {
     key: '_removeContentClasses',
     value: function _removeContentClasses(hasReveal) {
-      if (typeof hasReveal !== 'boolean') {
-        this.$content.removeClass(this.contentClasses.base.join(' '));
-      } else if (hasReveal === false) {
-        this.$content.removeClass('has-reveal-' + this.position);
+      this.$content.removeClass(this.contentClasses.base.join(' '));
+      if (hasReveal === true) {
+        this.$content.removeClass(this.contentClasses.reveal.join(' '));
       }
     }
 
@@ -17432,10 +17410,9 @@ var OffCanvas = function (_Plugin) {
   }, {
     key: '_addContentClasses',
     value: function _addContentClasses(hasReveal) {
-      this._removeContentClasses(hasReveal);
-      if (typeof hasReveal !== 'boolean') {
-        this.$content.addClass('has-transition-' + this.options.transition + ' has-position-' + this.position);
-      } else if (hasReveal === true) {
+      this._removeContentClasses();
+      this.$content.addClass('has-transition-' + this.options.transition + ' has-position-' + this.position);
+      if (hasReveal === true) {
         this.$content.addClass('has-reveal-' + this.position);
       }
     }
@@ -18026,7 +18003,7 @@ var Orbit = function (_Plugin) {
         temp = this.getBoundingClientRect().height;
         (0, _jquery2.default)(this).attr('data-slide', counter);
 
-        if (!/mui/g.test((0, _jquery2.default)(this)[0].className) && _this.$slides.filter('.is-active')[0] !== _this.$slides.eq(counter)[0]) {
+        if (_this.$slides.filter('.is-active')[0] !== _this.$slides.eq(counter)[0]) {
           //if not the active slide, set css position and display property
           (0, _jquery2.default)(this).css({ 'position': 'relative', 'display': 'none' });
         }
@@ -20054,12 +20031,6 @@ var Slider = function (_Plugin) {
 
       var isDbl = this.options.doubleSided;
 
-      //this is for single-handled vertical sliders, it adjusts the value to account for the slider being "upside-down"
-      //for click and drag events, it's weird due to the scale(-1, 1) css property
-      if (this.options.vertical && !noInvert) {
-        location = this.options.end - location;
-      }
-
       if (isDbl) {
         //this block is to prevent 2 handles from crossing eachother. Could/should be improved.
         if (this.handles.index($hndl) === 0) {
@@ -20069,6 +20040,12 @@ var Slider = function (_Plugin) {
           var h1Val = parseFloat(this.$handle.attr('aria-valuenow'));
           location = location <= h1Val ? h1Val + this.options.step : location;
         }
+      }
+
+      //this is for single-handled vertical sliders, it adjusts the value to account for the slider being "upside-down"
+      //for click and drag events, it's weird due to the scale(-1, 1) css property
+      if (this.options.vertical && !noInvert) {
+        location = this.options.end - location;
       }
 
       var _this = this,
