@@ -28,6 +28,7 @@
     "mongoose": "^4.11.6",
     "motion-ui": "~1.2.2",
     "mysql": "^2.10.2",
+    "octophant": "^1.0.1",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",

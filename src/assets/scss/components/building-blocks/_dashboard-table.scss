@@ -1,3 +1,12 @@
+////
+/// @group Dashboard
+////
+
+/// Dashboard Colors
+$dashboard-table-primary-color: $dark-gray;
+/// 
+$dashboard-table-secondary-color: $light-gray;
+
 .dashboard-table {
   border-collapse: collapse;
   margin-bottom: 0;
@@ -7,7 +16,7 @@
   }
 
   a {
-    color: darken($dark-gray, 40%);
+    color: darken($dashboard-table-primary-color, 40%);
   }
 
   .bold {
@@ -18,17 +27,17 @@
   thead {
     background: none;
     border: 0;
-    border-bottom: 1px solid $light-gray;
-    color: $dark-gray;
+    border-bottom: 1px solid $dashboard-table-secondary-color;
+    color: $dashboard-table-primary-color;
     font-size: 0.8rem;
   }
 
   thead a {
-    color: $dark-gray;
+    color: $dashboard-table-primary-color;
   }
 
   tbody {
-    border: 1px solid darken($light-gray, 2%);
+    border: 1px solid darken($dashboard-table-secondary-color, 2%);
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 
     tr {
@@ -56,7 +65,7 @@
 }
 
 .dashboard-table-timestamp {
-  color: darken($light-gray, 30%);
+  color: darken($dashboard-table-secondary-color, 30%);
   font-size: 0.9rem;
   font-weight: 400;
 }

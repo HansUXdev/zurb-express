@@ -1,5 +1,12 @@
+////
+/// @group Status Input
+////
+
+///
+$status-update-input-box: $white;
+
 .status-update-input-box {
-  background-color: $white;
+  background-color: $status-update-input-box;
   padding: 1rem;
   width: 100%;
   border: 1px solid $medium-gray;

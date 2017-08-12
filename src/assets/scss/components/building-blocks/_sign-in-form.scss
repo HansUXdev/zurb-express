@@ -1,10 +1,19 @@
+////
+/// @group Login & Sign up
+////
+
+///
+$sign-in-form-text-primary-color: white;
+///
+$sign-in-form-text-button-color: #fff;
+
 .sign-in-form {
   padding: 1rem 1.5em;
   border-radius: .5rem;
   background-color: #3d454f;
 
   h4 {
-    color: white;
+    color: $sign-in-form-text-color;
     margin-bottom: 1rem;
     font-weight: 600;
     text-transform: uppercase
@@ -19,7 +28,7 @@
   }
 
   input {
-    color: white;
+    color: $sign-in-form-text-color;
   }
 
   input:focus {
@@ -37,8 +46,8 @@
 
 .sign-in-form-button {
   border-radius: 30px;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid $sign-in-form-text-button-color;
+  color: $sign-in-form-text-button-color;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
