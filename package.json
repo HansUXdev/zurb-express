@@ -21,7 +21,6 @@
     "express-validator": "^3.2.1",
     "foundation-sites": "~6.4.1",
     "handlebars-helpers": "^0.9.3",
-    "hbs": "^4.0.1",
     "jquery": ">=3.0.0",
     "method-override": "^2.3.5",
     "moment": "^2.18.1",

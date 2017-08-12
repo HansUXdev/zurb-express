@@ -21,13 +21,15 @@ module.exports = function(app, passport,LocalStrategy,flash) {
         var username = req.body.username;
         var password = req.body.password;
         var password2 = req.body.password2;
-        console.log(`You signed up
+        
+        console.log(`You signed up:
           ${name}
           ${email}
           ${username}
           ${password}
           ${password2}
         `);
+        
         // Validation
         req.checkBody('username', 'Name is required').notEmpty();
         req.checkBody('email', 'Email is required').notEmpty();
