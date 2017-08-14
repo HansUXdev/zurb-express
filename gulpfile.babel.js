@@ -16,17 +16,6 @@ import octophant     from 'octophant';
 
 // use this for console commands
 const exec    = require('child_process').exec;
-// Check the status of the repo, add all changes, 
-// commit changes and push
-function commit(cb){
-  var command = `git status && git add -A && git commit -m "changed these files" && git push`
-    // Run the command
-    exec(command, function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    }); 
-}
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -247,4 +236,15 @@ gulp.task('default',
     // server, 
     watch)
 );
-gulp.task('init', commit)
+gulp.task('commit', commit)
+// Check the status of the repo, add all changes, 
+// commit changes and push
+function commit(cb){
+  var command = `git status && git add -A && git commit -m "changed these files" && git push`
+    // Run the command
+    exec(`gulp`, function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    }); 
+}

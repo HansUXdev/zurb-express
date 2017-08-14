@@ -9,6 +9,9 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var fs      = require('fs')
+var exec    = require('child_process').exec;
+
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -103,17 +106,18 @@ app.set("view engine", "handlebars");
 	require("./routes/home.js")(app, menu);
 	require("./routes/admin.js")(app,passport,LocalStrategy,flash);
 
-
-// app.listen(port);
-// app.set('port', (process.env.PORT || 8000));
-
-// app.listen(app.get('port'), function(){
-// 	console.log('Server started on port '+app.get('port'));
-// });
-
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
+  // run gulp with the server
+  // NOTE if you use nodemon without a nodemon.json 
+  //      ignoring the public folder then it will loop...
+  // 
+  exec(`gulp`, function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      cb(err);
+  }); 
 });
