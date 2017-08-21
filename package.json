@@ -2,7 +2,7 @@
   "name": "zurb-express",
   "version": "1.3.0",
   "description": "Unofficial ZURB Template for Foundation with Express.",
-  "main": "gulpfile.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js || node server.js",
     "git":"git status && git add -A && git commit -m \"changed these files\" && git push",
