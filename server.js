@@ -12,7 +12,7 @@ var passport          = require('passport');
 var LocalStrategy     = require('passport-local').Strategy;
 var fs                = require('fs');
 var exec              = require('child_process').exec;
-
+var favicon           = require('serve-favicon');
 
 ////// port
 var port = process.env.PORT || 8000;
@@ -33,6 +33,7 @@ app.use(cookieParser());
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use('/public', express.static('public'))
+app.use(favicon(path.join(__dirname, 'public/assets/img', 'favicon.ico')));
   require("./controllers/sessions.js")(app,session,passport,LocalStrategy);
   // require("./controllers/errors.js")(app,flash,expressValidator,session);
 
