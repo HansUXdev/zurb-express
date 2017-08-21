@@ -5,29 +5,25 @@
 // But you could have it be an empty array as well.
 // ===============================================================================
 
-var menu = {
-  layouts: [
-    // {
-    //   url: "/admin",
-    //   layout: 'dashboard',
-    //   data: '/',
-    //   page:'admin/admin',
-    //   name: "Dashboard"
-    // },
-    {
-      url: "/offcanvas",
-      layout: 'offcanvas',
-      data: '/',
-      page:'pages/ecommerce',
-      name: "Offcanvas"
-    }
-  ],  
-  topbar: [
-    {
-      url: "/home",
-      name: "home"
-    }
-  ],
+var data = {
+  pages: {
+    home: {
+      meta: [
+        {
+          title: "/portfolio",
+          keywords: "portfolio",
+          description: "Hans McMurdy's Web Resume and portfolio. Front-end Developer.",
+          author: "Hans McMurdy"
+        },
+      ],
+      scripts:[
+        'app.js'
+      ],
+      styles:[
+        'app.css'
+      ],
+    },
+  },  
   templates: [
     {
       url: "/portfolio",
@@ -64,4 +60,4 @@ var menu = {
 
 
 // Note how we export the array. This makes it accessible to other files using require.
-module.exports = menu;
+module.exports = data;
