@@ -13,7 +13,7 @@ $sign-in-form-text-button-color: #fff;
   background-color: #3d454f;
 
   h4 {
-    color: $sign-in-form-text-color;
+    color: $sign-in-form-text-primary-color;
     margin-bottom: 1rem;
     font-weight: 600;
     text-transform: uppercase
@@ -28,7 +28,7 @@ $sign-in-form-text-button-color: #fff;
   }
 
   input {
-    color: $sign-in-form-text-color;
+    color: $sign-in-form-text-primary-color;
   }
 
   input:focus {
