@@ -117,10 +117,10 @@ db.sequelize.sync({ force: true }).then(function() {
   // run gulp with the server
   // NOTE if you use nodemon without a nodemon.json 
   //      ignoring the public folder then it will loop...
-  // 
-  exec(`gulp`, function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      cb(err);
-  }); 
+
+  // exec(`gulp`, function (err, stdout, stderr) {
+  //     console.log(stdout);
+  //     console.log(stderr);
+  //     cb(err);
+  // }); 
 });
