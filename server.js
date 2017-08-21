@@ -15,7 +15,7 @@ var exec    					= require('child_process').exec;
 var favicon 					= require('serve-favicon');
 
 // Set this = true when you want to deploy
-var prod = false;
+var prod = true;
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
