@@ -8,7 +8,7 @@
 {{/if}}
 
 {{#if error_msg}}
-  <div class="success callout" data-closable="slide-out-right">
+  <div class="alert callout" data-closable="slide-out-right">
     <p>{{error_msg}}</p>
     <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
@@ -17,7 +17,7 @@
 {{/if}}
 
 {{#if error}}
-  <div class="success callout" data-closable="slide-out-right">
+  <div class="alert callout" data-closable="slide-out-right">
     <p>{{error}}</p>
     <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
@@ -26,7 +26,7 @@
 {{/if}}
 {{#if errors}}
   {{#each errors}}
-  <div class="success callout" data-closable="slide-out-right">
+  <div class="alert callout" data-closable="slide-out-right">
     <p>{{msg}}</p>
     <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
