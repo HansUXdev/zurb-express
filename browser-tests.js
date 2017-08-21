@@ -1,51 +1,32 @@
+// USAGE
+// Automate cross-browser testings and user stories
+
 var yaml              = require("js-yaml");
 var fs                = require("fs");
 var Nightmare         = require("nightmare");
-
-// Load settings from settings.yml
-// const { PORT } = loadConfig();
-
-// //console.log(PORT);
-
-// function loadConfig() {
-//   let ymlFile = fs.readFileSync('config.yml', 'utf8');
-//   return yaml.load(ymlFile);
-// }
-
 
 var nightmare = Nightmare({
   show: true
 });
 
-  const breakpoints = [
-    "640",
-    "1024",
-    "1200",
-    "1440"
-  ];
-
-
-// function homePage (){
-
   nightmare
     // Visit Home page
     .goto('http://localhost:8000/').wait(500)
       // Small
-      .viewport(622, 800).wait(2000)
+      .viewport(480, 800).wait(2000)
+        .screenshot("src/assets/img/small.png")
         .scrollTo(200, 0).wait(2000)
         .scrollTo(400, 0).wait(2000)
         .scrollTo(600, 0).wait(2000)
       // Medium
       .viewport(640, 800).wait(2000)
+        .screenshot("src/assets/img/medium.png")
         .scrollTo(200, 0).wait(2000)
         .scrollTo(400, 0).wait(2000)
         .scrollTo(600, 0).wait(2000)
-      // Large
+      // // Large
       .viewport(1024, 800).wait(2000)
-        .scrollTo(200, 0).wait(2000)
-        .scrollTo(400, 0).wait(2000)
-        .scrollTo(600, 0).wait(2000)
-      .viewport(1440, 800).wait(2000)
+        .screenshot("src/assets/img/large.png")
         .scrollTo(200, 0).wait(2000)
         .scrollTo(400, 0).wait(2000)
         .scrollTo(600, 0).wait(2000)
@@ -60,6 +41,3 @@ var nightmare = Nightmare({
     .catch(function (err) {
        console.log(err)
      })
-// }
-
-// homePage();

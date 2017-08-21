@@ -236,15 +236,3 @@ gulp.task('default',
     // server, 
     watch)
 );
-gulp.task('commit', commit)
-// Check the status of the repo, add all changes, 
-// commit changes and push
-function commit(cb){
-  var command = `git status && git add -A && git commit -m "changed these files" && git push`
-    // Run the command
-    exec(`gulp`, function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    }); 
-}
