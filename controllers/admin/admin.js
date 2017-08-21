@@ -1,14 +1,14 @@
 // sequelize
-var db = require("../models");
+// var sequel = require("../../models/sequelize");
 
-// mongoose 
-var User = require('../db/mongo/users');
+// // mongoose 
+// var User = require('../models/mongoose/users.js');
 
 // var passport = require('passport');
 // var LocalStrategy = require('passport-local').Strategy;
 
 
-module.exports = function(app, passport,LocalStrategy,flash) {
+module.exports = function(app, passport, LocalStrategy, flash, sql, User) {
   // Registration
     app.get('/register', function(req, res){
         res.render('register');
@@ -119,14 +119,14 @@ module.exports = function(app, passport,LocalStrategy,flash) {
   // Get Agin only when Authenticated
   app.get('/admin/admin', ensureAuthenticated, function(req, res){
     // find all the messages ever data you want
-    db.Messages.findAll({})
+    sql.Messages.findAll({})
     .then(function(dbMessage) {
       res.json(dbMessage);
       return res.render("admin", {
         messages: dbMessage
       });
     });
-    // res.render('admin');
+    res.render('admin');
   });
 
 

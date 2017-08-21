@@ -29,7 +29,7 @@ var nightmare = Nightmare({
 
   nightmare
     // Visit Home page
-    .goto('localhost:3000/').wait(500)
+    .goto('http://localhost:8000/').wait(500)
       // Small
       .viewport(622, 800).wait(2000)
         .scrollTo(200, 0).wait(2000)
