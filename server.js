@@ -79,10 +79,10 @@ app.use(favicon(path.join(__dirname, 'public/assets/img', 'favicon.ico')));
 // Require your databases
 ////// 
   /// mongo/mongoose
-  var mongo = require('mongodb');
-  var mongoose = require('mongoose');
-  // var User = require('./models/mongoose/users.js');
-  // require("./controllers/mongo.js")(mongo,mongoose);
+    // var mongo = require('mongodb');
+    // var mongoose = require('mongoose');
+    // var User = require('./models/mongoose/users.js');
+    // require("./controllers/mongo.js")(mongo,mongoose);
   /// sequelize
     // var sql = require("./models/sequelize");
     // require("./controllers/sql.js")(app,sql,port);
