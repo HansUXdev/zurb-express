@@ -1,16 +1,29 @@
 {
   "name": "zurb-express",
-  "version": "1.3.0",
-  "description": "Unofficial ZURB Template for Foundation with Express.",
-  "main": "server.js",
+  "version": "1.0.0",
+  "description": "An Express.js fork of the classic Zurb Template.",
+  "main": "sever.js",
   "scripts": {
     "start": "nodemon server.js || node server.js",
     "git":"git status && git add -A && git commit -m \"changed these files\" && git push",
     "heroku":"gulp build --production && git status && git add -A && git commit -m \"updating for heroku\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HansUXdev/zurb-express.git"
+  },
   "author": "Hans McMurdy",
-  "license": "MIT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HansUXdev/zurb-express/issues"
+  },
+  "keywords": [
+    "foundation",
+    "foundation-sites",
+    "boilerplate"
+  ],
+  "homepage": "https://github.com/HansUXdev/zurb-express/#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
@@ -70,19 +83,5 @@
     "webpack": "^2.6.1",
     "webpack-stream": "^3.2.0",
     "yargs": "^3.8.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/HansUXdev/zurb-express.git"
-  },
-  "bugs": {
-    "url": "github.com/HansUXdev/zurb-expressissues",
-    "email": "foundation@zurb.com"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
-  "private": true
+  }
 }

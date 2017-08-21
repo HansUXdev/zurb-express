@@ -24,10 +24,6 @@ var menu = {
   ],  
   topbar: [
     {
-      url: "/",
-      name: "Component"
-    },
-    {
       url: "/login",
       name: "login"
     },
