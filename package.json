@@ -1,5 +1,5 @@
 {
-  "name": "foundation-static",
+  "name": "zurb-express",
   "version": "1.0.0",
   "description": "An Express.js fork of the classic Zurb Template.",
   "main": "sever.js",
@@ -11,19 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HansUXdev/foundation-static.git"
+    "url": "git+https://github.com/HansUXdev/zurb-express.git"
   },
   "author": "Hans McMurdy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HansUXdev/foundation-static/issues"
+    "url": "https://github.com/HansUXdev/zurb-express/issues"
   },
   "keywords": [
     "foundation",
     "foundation-sites",
     "boilerplate"
   ],
-  "homepage": "https://github.com/HansUXdev/foundation-static/#readme",
+  "homepage": "https://github.com/HansUXdev/zurb-express/#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
