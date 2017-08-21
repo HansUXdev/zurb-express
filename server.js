@@ -15,16 +15,16 @@ var exec    					= require('child_process').exec;
 var favicon 					= require('serve-favicon');
 
 // Set this = true when you want to deploy
-var prod = true;
+var prod = false;
 
-// var mongo = require('mongodb');
-// var mongoose = require('mongoose');
-// var User = require('./models/mongoose/users');
-// mongoose.connect('mongodb://localhost/loginapp', {
-//   useMongoClient: true,
-//   /* other options */
-// }); 
-// var datab = mongoose.connection;
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
+var User = require('./models/mongoose/users');
+mongoose.connect('mongodb://localhost/loginapp', {
+  useMongoClient: true,
+  /* other options */
+}); 
+var datab = mongoose.connection;
 
 // Connect Flash
 app.use(flash());
@@ -92,7 +92,7 @@ app.set("view engine", "handlebars");
 // Import your routes
 	// require("./routes/sessions.js")(app, menu);
 	require("./controllers/home.js")(app, menu);
-	// require("./controllers/admin.js")(app,passport,LocalStrategy,flash,User);
+	require("./controllers/admin.js")(app,passport,LocalStrategy,flash,User);
 
 if (prod) {
 	exec('gulp build', function (err, stdout, stderr) {
