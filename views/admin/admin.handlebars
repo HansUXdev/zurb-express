@@ -19,96 +19,51 @@
   </thead>
   <tbody>
   </tbody>
-  {{!-- 
-   --}}
-    {{!-- {{#if Messages}} --}}
     {{#each Messages}}
-    <tr class="your messages">
-      <td>
-        <div class="flex-container align-justify align-top">
-          <div class="flex-child-shrink">
-            <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
+      <tr class="your messages">
+        <td>
+          <div class="flex-container align-justify align-top">
+            <div class="flex-child-shrink">
+              <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
+            </div>
+            <div class="flex-child-grow">
+              <h6 class="dashboard-table-text">{{this.name}}</h6>
+              <span class="dashboard-table-timestamp">03/04/2017</span>
+            </div>
           </div>
-          <div class="flex-child-grow">
-            <h6 class="dashboard-table-text">{{this.name}}</h6>
-            <span class="dashboard-table-timestamp">03/04/2017</span>
+        </td>
+        <td>Single Line</td>
+        <td class="bold">A Bold Line</td>
+        <td>A Date</td>
+        <td>
+          <div class="flex-container align-top">
+            <div class="flex-child-shrink">
+              <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
+            </div>
+            <div class="flex-child">
+              <h6 class="dashboard-table-text">Another person did something</h6>
+              <span class="dashboard-table-timestamp">03/08/2017</span>
+            </div>
           </div>
-        </div>
-      </td>
-      <td>Single Line</td>
-      <td class="bold">A Bold Line</td>
-      <td>A Date</td>
-      <td>
-        <div class="flex-container align-top">
-          <div class="flex-child-shrink">
-            <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
+        </td>
+        <td class="listing-inquiry-status">
+        
+          <div class="flex-container align-top">
+            <div class="flex-child-shrink">
+              <img class="dashboard-table-image" src="http://lorempixel.com/25/25/abstract/">
+            </div>
+            <div class="flex-child">
+              <h6 class="dashboard-table-text"><a href="#">
+                {{!-- A longer wrapping item with an image that is aligned to the top --}}
+                {{this.text}}
+              </a>
+              </h6>
+            </div>
           </div>
-          <div class="flex-child">
-            <h6 class="dashboard-table-text">Another person did something</h6>
-            <span class="dashboard-table-timestamp">03/08/2017</span>
-          </div>
-        </div>
-      </td>
-      <td class="listing-inquiry-status">
-      
-        <div class="flex-container align-top">
-          <div class="flex-child-shrink">
-            <img class="dashboard-table-image" src="http://lorempixel.com/25/25/abstract/">
-          </div>
-          <div class="flex-child">
-            <h6 class="dashboard-table-text"><a href="#">
-              {{!-- A longer wrapping item with an image that is aligned to the top --}}
-              {{this.text}}
-            </a>
-            </h6>
-          </div>
-        </div>
-      
-      </td>
-    </tr>
+        
+        </td>
+      </tr>
     {{/each}}
-    {{!-- Else show mock up data --}}
-    {{!-- {{else}} --}}
-{{!--     <tr>
-      <td>
-        <div class="flex-container align-justify align-top">
-          <div class="flex-child-shrink">
-            <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
-          </div>
-          <div class="flex-child-grow">
-            <h6 class="dashboard-table-text">A Person</h6>
-            <span class="dashboard-table-timestamp">03/04/2017</span>
-          </div>
-        </div>
-      </td>
-      <td>Single Line</td>
-      <td class="bold">A Bold Line</td>
-      <td>A Date</td>
-      <td>
-        <div class="flex-container align-top">
-          <div class="flex-child-shrink">
-            <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
-          </div>
-          <div class="flex-child">
-            <h6 class="dashboard-table-text">Another person did something</h6>
-            <span class="dashboard-table-timestamp">03/08/2017</span>
-          </div>
-        </div>
-      </td>
-      <td class="listing-inquiry-status">
-      
-        <div class="flex-container align-top">
-          <div class="flex-child-shrink">
-            <img class="dashboard-table-image" src="http://lorempixel.com/25/25/abstract/">
-          </div>
-          <div class="flex-child">
-            <h6 class="dashboard-table-text"><a href="#">A longer wrapping item with an image that is aligned to the top</a></h6>
-          </div>
-        </div>
-      
-      </td>
-    </tr> --}}
-    {{!-- {{/if}}     --}}
   </tbody>
 </table>
 

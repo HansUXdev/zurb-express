@@ -5,9 +5,9 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "nodemon server.js || node server.js",
-    "git": "git status && git add -A && git commit -m \"changed these files\" && git push",
-    "heroku": "gulp build --production && git status && git add -A && git commit -m \"updating for heroku\" && git push heroku master",
-    "build": "gulp build --production"
+    "git":"git status && git add -A && git commit -m \"changed these files\" && git push",
+    "heroku":"gulp build --production && git status && git add -A && git commit -m \"updating for heroku\" && git push heroku master",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hans McMurdy",
   "license": "MIT",
