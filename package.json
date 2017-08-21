@@ -4,7 +4,7 @@
   "description": "Unofficial ZURB Template for Foundation with Express.",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp && nodemon ./server.js localhost 8080",
+    "start": "nodemon ./server.js",
     "build": "gulp build --production"
   },
   "author": "ZURB <foundation@zurb.com>",

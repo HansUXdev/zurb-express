@@ -24,6 +24,9 @@ var datab = mongoose.connection;
 
 
 var PORT = 8000;
+
+var port = process.env.PORT || PORT;
+
 var app = express();
 // Requiring our models for syncing
 var db = require("./models");
