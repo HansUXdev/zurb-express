@@ -1,0 +1,36 @@
+{{#if success_msg}}
+  <div class="success callout" data-closable="slide-out-right">
+    <p>{{success_msg}}</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{{/if}}
+
+{{#if error_msg}}
+  <div class="alert callout" data-closable="slide-out-right">
+    <p>{{error_msg}}</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{{/if}}
+
+{{#if error}}
+  <div class="alert callout" data-closable="slide-out-right">
+    <p>{{error}}</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{{/if}}
+{{#if errors}}
+  {{#each errors}}
+  <div class="alert callout" data-closable="slide-out-right">
+    <p>{{msg}}</p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {{/each}}
+{{/if}}

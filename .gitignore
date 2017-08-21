@@ -4,6 +4,8 @@ node_modules
 npm-debug.log
 bower_components
 dist
+test/
+
 test.js
 db/sql/
 models/sql/
