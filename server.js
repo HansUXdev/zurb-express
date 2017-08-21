@@ -20,7 +20,10 @@ var prod = false;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var User = require('./models/mongoose/users');
-mongoose.connect('mongodb://localhost/loginapp', {
+
+// mongodb://localhost/loginapp
+// mongodb://heroku_gc22dx2t:mn01m6umsupkaili2d6lg2dkp@ds161860.mlab.com:61860/heroku_gc22dx2t
+mongoose.connect('mongodb://heroku_gc22dx2t:mn01m6umsupkaili2d6lg2dkp@ds161860.mlab.com:61860/heroku_gc22dx2t', {
   useMongoClient: true,
   /* other options */
 }); 
