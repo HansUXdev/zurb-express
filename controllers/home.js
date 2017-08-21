@@ -7,19 +7,19 @@ module.exports = function(app, menu) {
   });
 
   ///// create routes for layout pages
-  menu.layouts.forEach(function(element) {
-   app.get(element.url,function(req, res) {
+  menu.layouts.forEach(function(layouts) {
+   app.get(layouts.url,function(req, res) {
      res.render(
-       element.page,
-       {layout: element.layout}
+       layouts.page,
+       {layout: layouts.layout}
      );
    });
   });
 
   ///// create routes for each tempalate
-  menu.templates.forEach(function(element) {
-   app.get(element.url,function(req, res) {
-     res.render("pages/"+element.url);
+  menu.templates.forEach(function(templates) {
+   app.get(templates.url,function(req, res) {
+     res.render("pages/"+templates.url);
    });
   });
 

@@ -15,7 +15,6 @@
   </head>
   <body>
     {{!-- {{>topbar-data}} --}}
-
 <div class="app-dashboard shrink-medium">
   <div class="row expanded app-dashboard-top-nav-bar">
     <div class="columns medium-2">
@@ -79,6 +78,7 @@
     </div>
 
     <div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+      {{>errors}}
       {{{body}}}
 
 
