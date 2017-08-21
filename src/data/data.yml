@@ -1,0 +1,13 @@
+global:
+  meta:
+  - title: "/portfolio"
+    keywords: portfolio
+    description: Hans McMurdy's Web Resume and portfolio. Front-end Developer.
+    author: Hans McMurdy
+pages:
+  home:
+    meta:
+    - title: "/portfolio"
+      keywords: portfolio
+      description: Hans McMurdy's Web Resume and portfolio. Front-end Developer.
+      author: Hans McMurdy

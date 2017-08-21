@@ -8,10 +8,10 @@
 var menu = {
   layouts: [
     {
-      url: "/admin",
+      url: "/dash",
       layout: 'dashboard',
       data: '/',
-      page:'admin/admin',
+      page:'index',
       name: "Dashboard"
     },
     {

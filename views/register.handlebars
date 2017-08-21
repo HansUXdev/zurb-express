@@ -2,14 +2,33 @@
 <div class="login-box">
   <div class="row collapse expanded">
     <div class="small-12 medium-6 column small-order-2 medium-order-1">
-      <form method="post" action="/register" class="login-box-form-section">
+      {{!-- Form --}}
+      <form method="post" action="/register" class="login-box-form-section" data-abide novalidate>
+        {{!-- Error --}}
+        <div data-abide-error data-closable="slide-out-down" class="alert callout" style="display: none;">
+          <p><i class="fi-alert"></i> There are some errors in your form.</p>
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <h1 class="login-box-title">Sign up</h1>
-        <input class="login-box-input" type="text" name="username" placeholder="Username" />
-        <input class="login-box-input" type="email" name="email" placeholder="E-mail" />
-        <input class="login-box-input" type="password" name="password" placeholder="Password" />
-        <input class="login-box-input" type="password" name="password2" placeholder="Retype password" />
+
+        <input class="login-box-input" type="text" name="username" placeholder="Username" aria-describedby="enter username" required pattern="text" />
+
+        <input class="login-box-input" type="email" name="email" placeholder="E-mail" 
+        aria-describedby="enter email" required pattern="email"/>
+
+        <input class="login-box-input" id="regPassword" type="password" name="password" placeholder="Password" aria-describedby="exampleHelpText" required pattern="alpha_numeric"/>
+        <input class="login-box-input" type="password" name="password2" placeholder="Retype password" aria-describedby="exampleHelpText2" required pattern="alpha_numeric" data-equalto="regPassword"/>
         <input class="login-box-submit-button" type="submit" name="signup_submit" value="Sign me up" />
+        
+        {{!-- helper text 
+        <p class="help-text" id="exampleHelpText">Enter a password please.</p>
+        <p class="help-text" id="exampleHelpText2">This field is using the `data-equalto="password"` attribute, causing it to match the password field above.</p>
+        --}}
       </form >
+      {{!-- /form --}}
       <div class="or">OR</div>
     </div>
     <div class="small-12 medium-6 column small-order-1 medium-order-2 login-box-social-section">
