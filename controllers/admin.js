@@ -1,6 +1,20 @@
 
 
-module.exports = function(app,passport,LocalStrategy,flash,User) {
+module.exports = function(app,menu,passport,LocalStrategy,flash,User) {
+  ///// Prototype the routes to edit pages
+  menu.templates.forEach(function(templates) {
+   app.get('/admin/edit'+templates.url,function(req, res) {
+      res.render(
+        "pages/"+templates.url,
+        {
+          layout: 'dashboard',
+          assets: '../../public/assets/',
+        }
+      );
+   });
+   // console.log('admin/edit'+templates.url,templates.url);
+  });
+  
   // Registration
     app.get('/register', function(req, res){
         res.render('register');
@@ -54,6 +68,10 @@ module.exports = function(app,passport,LocalStrategy,flash,User) {
   // Login
     app.get('/login', function(req, res){
       res.render('login');
+
+        User.find({}).exec(function(err,username){
+          if (err) {res.send(err)} else{res.json(username)};
+        });
     });
     app.post('/login', 
       passport.authenticate('local', {
@@ -67,7 +85,7 @@ module.exports = function(app,passport,LocalStrategy,flash,User) {
   // Get Admin only when Authenticated
     app.get('/admin',ensureAuthenticated, function(req, res){
       res.render('admin/admin',{layout:'dashboard'});
-
+      console.log(User.find({}))
     });
   // Log out
     app.get('/logout', function(req, res){

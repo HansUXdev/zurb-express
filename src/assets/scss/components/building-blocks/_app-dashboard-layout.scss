@@ -7,6 +7,39 @@ $app-dashboard-top-nav-color: #2c3840;
 /// Top nav height
 $app-dashboard-top-nav-height: 55px;
 
+
+
+/////////////////
+.app-dashboard-sidebar-inner .menu.vertical > ul,
+.app-dashboard-sidebar-inner .menu.vertical > li{
+  background: #2f323a;
+  color: white;
+}
+
+
+/// Partent
+.menu.accordion-menu >li[role*="treeitem"] > .is-active {
+  background: #2f323a;
+  color: white;
+}
+
+.nested.submenu > li[role*="treeitem"],
+li[role*="treeitem"] {
+  background: #212328;
+  color: white;
+}
+
+.app-dashboard-sidebar-inner .menu.vertical > ul, 
+.app-dashboard-sidebar-inner .menu.vertical {
+    background: #2f323a;
+    color: white;
+}
+/////////////////
+
+
+
+
+
 .app-dashboard {
   height: 100vh;
   display: flex;
@@ -85,6 +118,27 @@ $app-dashboard-top-nav-height: 55px;
     font-size: 1.5rem;
   }
 }
+
+  // style the sidebar
+  #app-dashboard-sidebar{
+    .app-dashboard-sidebar-title-area{
+      background: #2f323a;
+      color: white;
+    }
+    .app-dashboard-sidebar-inner{
+      > .menu.vertical > li{
+        background: #2f323a;
+        color: white;
+        // background: $app-dashboard-top-nav-color;
+        // When dropdown is active
+        [aria-expanded*="true"] {
+          background: #000;
+          color: white;
+        }
+      }
+    }
+
+  }
 
 .app-dashboard-sidebar {
   background-color: $white;
