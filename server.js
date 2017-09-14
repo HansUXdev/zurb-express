@@ -24,7 +24,7 @@ var User = require('./models/mongoose/users');
 // mongodb://localhost/loginapp
 // mongodb://heroku_gc22dx2t:mn01m6umsupkaili2d6lg2dkp@ds161860.mlab.com:61860/heroku_gc22dx2t
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://heroku_gc22dx2t:mn01m6umsupkaili2d6lg2dkp@ds161860.mlab.com:61860/heroku_gc22dx2t', {
+mongoose.connect('mongodb://localhost/loginapp', {
   useMongoClient: true,
   /* other options */
 }); 
