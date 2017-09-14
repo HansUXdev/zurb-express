@@ -1,6 +1,20 @@
 
 
-module.exports = function(app,passport,LocalStrategy,flash,User) {
+module.exports = function(app,menu,passport,LocalStrategy,flash,User) {
+  ///// Prototype the routes to edit pages
+  menu.templates.forEach(function(templates) {
+   app.get('/admin/edit'+templates.url,function(req, res) {
+      res.render(
+        "pages/"+templates.url,
+        {
+          layout: 'dashboard',
+          assets: '../../public/assets/',
+        }
+      );
+   });
+   // console.log('admin/edit'+templates.url,templates.url);
+  });
+  
   // Registration
     app.get('/register', function(req, res){
         res.render('register');
@@ -12,13 +26,6 @@ module.exports = function(app,passport,LocalStrategy,flash,User) {
         var password = req.body.password;
         var password2 = req.body.password2;
         
-        // console.log(`You signed up:
-        //   ${name}
-        //   ${email}
-        //   ${username}
-        //   ${password}
-        //   ${password2}
-        // `);
         // Validation
         req.checkBody('username', 'Name is required').notEmpty();
         req.checkBody('email', 'Email is required').notEmpty();
@@ -67,8 +74,51 @@ module.exports = function(app,passport,LocalStrategy,flash,User) {
   // Get Admin only when Authenticated
     app.get('/admin',ensureAuthenticated, function(req, res){
       res.render('admin/admin',{layout:'dashboard'});
-
     });
+
+    // view the users
+    app.get('/admin/users',ensureAuthenticated, function(req, res){
+      var query = User.find({}).limit(10);
+      query.exec(function (err, user) {
+          if (err) {throw Error; }
+          res.render('admin/users', {
+            layout:'dashboard',
+            users: user,
+            assets: '../../public/assets/'
+          });
+      });
+    });
+
+    // view the messages you get
+    app.get('/admin/messages',ensureAuthenticated, function(req, res){
+      var query = User.find({}).limit(10);
+      query.exec(function (err, message) {
+          if (err) {throw Error; }
+          res.render('admin/messages', {
+            layout:'dashboard',
+            messages: message,
+            assets: '../../public/assets/'
+          });
+      });
+    });
+
+    // view to create your blog posts
+    app.get('/admin/posts',ensureAuthenticated, function(req, res){
+      var query = User.find({}).limit(10);
+      query.exec(function (err, post) {
+          if (err) {throw Error; }
+          res.render('admin/posts', {
+            layout:'dashboard',
+            posts: post,
+            assets: '../../public/assets/'
+          });
+      });
+    });
+
+
+
+
+
   // Log out
     app.get('/logout', function(req, res){
         req.logout();

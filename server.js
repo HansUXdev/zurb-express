@@ -23,7 +23,8 @@ var User = require('./models/mongoose/users');
 
 // mongodb://localhost/loginapp
 // mongodb://heroku_gc22dx2t:mn01m6umsupkaili2d6lg2dkp@ds161860.mlab.com:61860/heroku_gc22dx2t
-mongoose.connect('mongodb://heroku_gc22dx2t:mn01m6umsupkaili2d6lg2dkp@ds161860.mlab.com:61860/heroku_gc22dx2t', {
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/loginapp', {
   useMongoClient: true,
   /* other options */
 }); 
@@ -95,7 +96,7 @@ app.set("view engine", "handlebars");
 // Import your routes
 	// require("./routes/sessions.js")(app, menu);
 	require("./controllers/home.js")(app, menu);
-	require("./controllers/admin.js")(app,passport,LocalStrategy,flash,User);
+	require("./controllers/admin.js")(app, menu,passport,LocalStrategy,flash,User);
 
 if (prod) {
 	exec('gulp build', function (err, stdout, stderr) {

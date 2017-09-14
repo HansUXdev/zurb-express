@@ -1,0 +1,48 @@
+<table class="dashboard-table">
+  <colgroup>
+    <col width="150">
+    <col width="80">
+    <col width="200">
+    <col width="60">
+    <col width="220">
+    <col width="170">
+  </colgroup>
+  <thead>
+    <tr>
+      <th><a href="#">Name <i class="fa fa-caret-down"></i></a></th>
+      <th><a href="#">Email <i class="fa fa-caret-down"></i></a></th>
+      <th><a href="#">Message <i class="fa fa-caret-down"></i></a></th>
+      <th><a href="#">Date <i class="fa fa-caret-down"></i></a></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+    {{#each users}}
+      <tr class="yourusers">
+        <td>
+          <div class="flex-container align-justify align-top">
+            <div class="flex-child-shrink">
+              <img class="dashboard-table-image" src="http://lorempixel.com/50/50/people/">
+            </div>
+            <div class="flex-child-grow">
+              <h6 class="dashboard-table-text">
+                {{!-- {{name}} --}}
+                {{username}}
+              </h6>
+            </div>
+          </div>
+        </td>
+        <td>{{email}}</td>
+        <td class=" ">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</td>
+        <td>
+          {{!-- A Date --}}
+          <span class="dashboard-table-timestamp">
+            {{!-- {{time}} --}}
+            03/04/2017
+          </span>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+

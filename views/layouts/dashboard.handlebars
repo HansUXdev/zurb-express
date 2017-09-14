@@ -5,12 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation for Sites</title>
-  	
-    <link rel="icon" href="public/assets/img/favicon.ico">
-
-    <link rel="stylesheet" href="./public/assets/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{#if assets}}
+      <link rel="icon" href="{{assets}}img/favicon.ico">
+      <link rel="stylesheet" href="{{assets}}css/app.css">
+      {{else}}
+      <link rel="icon" href="public/assets/img/favicon.ico">
+      <link rel="stylesheet" href="./public/assets/css/app.css">
+    {{/if}}
    
   </head>
   <body>
@@ -53,26 +56,80 @@
       </div>
       <div class="app-dashboard-sidebar-inner">
         <ul class="menu vertical">
+        {{!-- Blog --}}
+          {{!-- In a CMS, the routes should be something like:
+                /admin/edit/:post
+           --}}
+          <ul class="vertical menu accordion-menu" data-accordion-menu><li>
+            <a href="#" class="is-active">
+              <i class="large fa fa-files-o"></i>
+              <span class="app-dashboard-sidebar-text">Blog</span>
+            </a>
+            <ul class="menu vertical nested">
+              <li><a href="/admin/posts">Create Post</a></li>
+              <li><a href="/blog">Views Posts</a></li>
+            </ul>
+          </li></ul>
+        {{!-- Analytics --}}
           <li><a>
-            <i class="large fa fa-area-chart"></i>
-            <span class="app-dashboard-sidebar-text">Analytics</span>
-          </a></li>
-          <li><a href="#" class="is-active">
-            <i class="large fa fa-envelope-open"></i>
-            <span class="app-dashboard-sidebar-text">Messages</span>
-            <span class="badge" id="messageCount">1 <span class="show-for-sr">unread message</span></span>
-          </a></li>
-          <li><a>
-            <i class="large fa fa-users"></i><span class="app-dashboard-sidebar-text">Users</span>
-          </a></li>
-          {{!-- Should be a dropdown --}}
-          <li><a href="#" class="is-active">
-            <i class="large fa fa-files-o"></i><span class="app-dashboard-sidebar-text">Pages</span>
-          </a></li>
-
+             <i class="large fa fa-area-chart"></i>
+             <span class="app-dashboard-sidebar-text">Analytics</span>
+             </a>
+          </li>
+        {{!-- Messages --}}
+          <ul class="vertical menu accordion-menu" data-accordion-menu><li>
+            <a href="#" class="is-active">
+              <i class="large fa fa-envelope-open"></i>
+              <span class="app-dashboard-sidebar-text">Messages</span>
+              {{#if messages}}
+                <span class="badge" id="messageCount">
+                  1 {{!-- count --}}
+                  <span class="show-for-sr">unread message</span>
+                </span>
+              {{/if}}
+            </a>
+            <ul class="menu vertical nested">
+              <li><a href="/admin/messages">
+                Read Messages
+              </a></li>
+            </ul>
+          </li></ul>
+        {{!-- USERS --}}
+          <ul class="vertical menu accordion-menu" data-accordion-menu><li>
+            <a href="#" class="is-active">
+              <i class="large fa fa-users"></i>
+              <span class="app-dashboard-sidebar-text">Users</span>
+            </a>
+            <ul class="menu vertical nested">
+              <li><a href="/admin/users">Edit Users</a></li>
+            </ul>
+          </li></ul>
+        {{!-- Pages --}}
+          {{!-- In a CMS, the routes should be something like:
+                /admin/edit/:page
+           --}}
+          <ul class="vertical menu accordion-menu" data-accordion-menu><li>
+              <a href="#" class="is-active">
+                <i class="large fa fa-files-o"></i>
+                <span class="app-dashboard-sidebar-text">
+                  Edit Pages
+                </span>
+              </a>
+              <ul class="menu vertical nested">
+                {{#if menu.templates}}
+                  {{#each menu.templates}}
+                  <li><a href="/admin/edit{{url}}">{{name}}</a></li>
+                  {{/each}}
+                {{else}}
+                  <p>No templates</p>
+                {{/if}}
+              </ul>
+          </li></ul>
+        {{!--  --}}
           <li><a>
             <i class="large fa fa-cog"></i><span class="app-dashboard-sidebar-text">Settings</span>
           </a></li>
+        {{!--  --}}
         </ul>
       </div>
     </div>
@@ -87,9 +144,11 @@
 </div>
 
 
-	 
-    <script src="./public/assets/js/app.js"></script>
-    <script src="./public/assets/js/contact-panel.js"></script>
+   {{#if assets}}
+      <script src="{{assets}}js/app.js"></script>
+      {{else}}
+      <script src="./public/assets/js/app.js"></script>
+    {{/if}}
 	
   </body>
 </html>

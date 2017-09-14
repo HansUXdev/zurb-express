@@ -37,12 +37,12 @@ function loadConfig() {
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
  gulp.series(
-    clean, 
+    // clean, 
     gulp.parallel(
       sass, 
-      javascript, 
-      images, 
-      copy
+      // javascript, 
+      // images, 
+      // copy
       ), 
       blocks
   ));
